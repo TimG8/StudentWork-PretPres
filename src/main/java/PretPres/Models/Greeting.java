@@ -1,4 +1,4 @@
-package hello;
+package PretPres.Models;
 
 public class Greeting {
 
