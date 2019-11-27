@@ -5,9 +5,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
-@SpringBootApplication(scanBasePackages= {"PretPres.Models","PretPres.Controllers"})
+@SpringBootApplication(scanBasePackages= {"PretPres.Controllers","PretPres.DataManagementServices","PretPres.Models","PretPres.Repositories"})
 @EnableAutoConfiguration
-
 @ImportResource(value = "classpath:spring/application-config.xml")
 public class Application {
 
