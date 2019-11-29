@@ -41,6 +41,15 @@
             <scope>test</scope>
         </dependency>
         <!-- end::tests[] -->
+
+        <!-- https://mvnrepository.com/artifact/org.webjars.bower/angular -->
+        <dependency>
+            <groupId>org.webjars.bower</groupId>
+            <artifactId>angular</artifactId>
+            <version>1.7.8</version>
+        </dependency>
+
+
     </dependencies>
 
     <properties>
