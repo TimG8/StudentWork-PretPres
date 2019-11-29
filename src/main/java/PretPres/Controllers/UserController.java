@@ -18,10 +18,16 @@ public class UserController {
 
     @RequestMapping("")
     public Iterable<User> index(@RequestParam(value="name", defaultValue="World") String name, Model model) {
-        userManager.addUser("Romain","boisson");
-        userManager.addUser("Reynamd","Barbal");
-        userManager.addUser("tomothée","Guy");
         Iterable<User> allUser =userManager.getAllUsers();
         return allUser;
     }
+
+
+    @RequestMapping("todelete")
+    public User addUsers(Model model){
+        userManager.addUser("Romain","boisson");
+        userManager.addUser("Reynald","Barbal");
+        return userManager.addUser("tomothée","Guy");
+    }
+
 }
