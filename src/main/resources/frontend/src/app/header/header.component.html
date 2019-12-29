@@ -1,0 +1,103 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="../../index.html">Accueil</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="">Annonces</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="">Contacts</a>
+      </li>
+    </ul>
+    <div>
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signin">Se connecter</button>
+      <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#register">S'inscrire</button>
+    </div>
+  </div>
+</nav>
+
+<form id="signin" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Connectez-vous !</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-unstyled form-group">
+          <li>
+            <label class="col-form-label-lg" for="signinMail" >Email</label>
+          </li>
+          <li>
+            <input type="mail" class="form-control" id="signinMail" required="required" placeholder="exemple@mail.com" />
+          </li>
+          <li>
+            <label for="signinPW" class="col-form-label-lg">Mot de passe</label>
+          </li>
+          <li>
+            <input type="motdepasse" class="form-control" id="signinPW" placeholder="password" required="required" />
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <p>Vous n'avez pas de compte ?
+          <a href="#" class="text-primary" data-dismiss="modal" data-toggle="modal" data-target="#register">Inscrivez-vous !</a>
+        </p>
+        <button type="submit" id="signinButton" class="btn btn-primary">Se connecter</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<form id="register" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Rejoignez-nous !</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-unstyled form-group">
+          <li>
+            <label class="col-form-label-lg" for="registerMail" >Email</label>
+          </li>
+          <li>
+            <input type="mail" class="form-control" id="registerMail" required="required" placeholder="exemple@mail.com" />
+          </li>
+          <li>
+            <label for="registerPW" class="col-form-label-lg">Mot de passe</label>
+          </li>
+          <li>
+            <input type="password" class="form-control" id="registerPW" placeholder="motdepasse" required="required" />
+          </li>
+          <li>
+            <label for="registerPWConfirm" class="col-form-label-lg">Confirmer le mot de passe</label>
+          </li>
+          <li>
+            <input type="password" class="form-control" id="registerPWConfirm" placeholder="motdepasse" required="required" />
+          </li>
+          <li>
+            <label for="name" class="col-form-label-lg">Nom</label>
+          </li>
+          <li>
+            <input type="text" class="form-control" id="name" placeholder="Nom" required="required" />
+          </li>
+          <li>
+            <label for="firstname" class="col-form-label-lg">Prénom</label>
+          </li>
+          <li>
+            <input  type="text" class="form-control" id="firstname" placeholder="Prénom" required="required" />
+          </li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" id="registerButton" class="btn btn-primary">S'inscrire</button>
+      </div>
+    </div>
+  </div>
+</form>
+
+
