@@ -24,9 +24,9 @@ public class UserController {
 
     @RequestMapping("todelete")
     public User addUsers(Model model){
-        userManager.addUser("Romain","boisson");
-        userManager.addUser("Reynald","Barbal");
-        return userManager.addUser("tomothée","Guy");
+        userManager.addUser("Romain","boisson","romain.boisson@gmail.com","roro");
+        userManager.addUser("Reynald","Barbal","reyno.barbal@gmail.com","reyrey");
+        return userManager.addUser("tomothée","Guy","timtim@guy.com","gaygay");
     }
 
 }

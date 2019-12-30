@@ -16,10 +16,12 @@ public class UserManagement implements IUserManagement {
     {
         return userRepo.findAll();
     }
-    public User addUser(String firstname, String name){
+    public User addUser(String firstname, String name, String mail, String password){
         var user = new User();
         user.setFirstName(firstname);
         user.setName(name);
+        user.setMail(mail);
+        user.setPassword(password);
         return userRepo.save(user);
     }
 }
