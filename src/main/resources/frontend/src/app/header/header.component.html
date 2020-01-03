@@ -17,7 +17,7 @@
       <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#register">S'inscrire</button>
     </div>
     <div *ngIf="loginService.isUserLoggedIn()">
-      <p class="navbar-brand">Bienvenue {{this.loginService.user.mail}} !</p>
+      <p class="navbar-brand">Bienvenue {{this.loginService.user.firstName}} {{this.loginService.user.name}} !</p>
       <button type="button" class="d-inline btn btn-primary">Mon profil</button>
       <button type="button" class="d-inline btn btn-secondary" (click)="loginService.logOut()">Se déconnecter</button>
     </div>

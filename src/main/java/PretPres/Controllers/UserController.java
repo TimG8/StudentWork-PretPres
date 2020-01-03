@@ -22,6 +22,12 @@ public class UserController {
     }
 
 
+    @RequestMapping(path = {"login/{mail}/{password}"} )
+    public User login(@PathVariable("mail") String mail, @PathVariable("password") String password){
+        return userManager.getUser(mail, password);
+    }
+
+
     @RequestMapping("todelete")
     public User addUsers(Model model){
         userManager.addUser("Romain","boisson","romain.boisson@gmail.com","roro");

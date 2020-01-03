@@ -16,6 +16,12 @@ public class UserManagement implements IUserManagement {
     {
         return userRepo.findAll();
     }
+
+    @Override
+    public User getUser(String mail, String password) {
+        return userRepo.findByMailAndPassword(mail, password);
+    }
+
     public User addUser(String firstname, String name, String mail, String password){
         var user = new User();
         user.setFirstName(firstname);
