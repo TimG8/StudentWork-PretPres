@@ -1,4 +1,4 @@
-<form id="register" class="modal fade" role="dialog">
+<form id="register" class="modal fade" role="dialog" (ngSubmit)="registration()" ngNativeValidate>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -8,39 +8,58 @@
       <div class="modal-body">
         <ul class="list-unstyled form-group">
           <li>
-            <label class="col-form-label-lg" for="registerMail" >Email</label>
+            <label class="col-form-label-lg" for="mail">Email</label>
           </li>
           <li>
-            <input type="mail" class="form-control" id="registerMail" required="required" placeholder="exemple@mail.com" />
+            <input type="email" name="mail" class="form-control" id="mail" maxlength="100" required="required" placeholder="exemple@mail.com" [(ngModel)]="mail" />
           </li>
           <li>
-            <label for="registerPW" class="col-form-label-lg">Mot de passe</label>
+            <p id="wrongMail" class="wrong">L'adresse mail rentrée est invalide !</p>
           </li>
           <li>
-            <input type="password" class="form-control" id="registerPW" placeholder="motdepasse" required="required" />
+            <label for="password" class="col-form-label-lg">Mot de passe</label>
           </li>
           <li>
-            <label for="registerPWConfirm" class="col-form-label-lg">Confirmer le mot de passe</label>
+            <input type="password" name="passwod" class="form-control" id="password" maxlength="20" placeholder="motdepasse" required="required" [(ngModel)]="password"/>
           </li>
           <li>
-            <input type="password" class="form-control" id="registerPWConfirm" placeholder="motdepasse" required="required" />
+            <p id="wrongPasswordMatch" class="wrong">Le mot de passe doit contenir 1 majuscule, 1 minucule, une caractère numérique,
+              un caractère spécial (!, @, $, &, *) et avoir une longueur minimale de 6 ! </p>
+          </li>
+          <li>
+            <label for="passwordConfirm" class="col-form-label-lg">Confirmer le mot de passe</label>
+          </li>
+          <li>
+            <input type="password" name="passwordConfirm" class="form-control"  maxlength="20" id="passwordConfirm" placeholder="motdepasse" required="required" [(ngModel)]="passwordConfirm"/>
+          </li>
+          <li>
+            <p id="wrongPassword" class="wrong">Les deux mot de passe rentrés sont différents !</p>
           </li>
           <li>
             <label for="name" class="col-form-label-lg">Nom</label>
           </li>
           <li>
-            <input type="text" class="form-control" id="name" placeholder="Nom" required="required" />
+            <input type="text" class="form-control" name="name" id="name" maxlength="25" placeholder="Nom" required="required" [(ngModel)]="name"/>
+          </li>
+          <li>
+            <p id="wrongName" class="wrong">Seules les lettres sont autorisées !</p>
           </li>
           <li>
             <label for="firstname" class="col-form-label-lg">Prénom</label>
           </li>
           <li>
-            <input  type="text" class="form-control" id="firstname" placeholder="Prénom" required="required" />
+            <input  type="text" class="form-control" name="firstname" id="firstname" maxlength="25" placeholder="Prénom" required="required" [(ngModel)]="firstname"/>
+          </li>
+          <li>
+            <p id="wrongfirstname" class="wrong">Seules les lettres sont autorisées !</p>
           </li>
         </ul>
       </div>
       <div class="modal-footer">
-        <button type="submit" id="registerButton" class="btn btn-primary">S'inscrire</button>
+        <p>Vous avez déjà un compte ?
+          <a href="#" class="text-primary" data-dismiss="modal" data-toggle="modal" data-target="#signin">Connectez-vous !</a>
+        </p>
+        <input type="submit" id="registerButton" class="btn btn-primary" value="S'inscrire">
       </div>
     </div>
   </div>

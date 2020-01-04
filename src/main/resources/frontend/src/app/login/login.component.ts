@@ -17,17 +17,16 @@ export class LoginComponent implements OnInit {
 
   mail = ''
   password = ''
-  invalidLogin = false
 
 
   checkLogin() {
-    if (this.loginService.authenticate(this.mail, this.password)) {
-      this.invalidLogin = false;
-      $('#signin').modal('hide');
-    } else {
-      alert("Bad login/password");
-      this.invalidLogin = true;
+    $(".wrong").css("display","none");
+
+    if(!this.password.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@\\$&\\*])(?=.{6,})")){
+      $("#wrongPasswordMatch").css("display","block");
+      return;
     }
+    this.loginService.authenticate(this.mail, this.password);
   }
 
 }

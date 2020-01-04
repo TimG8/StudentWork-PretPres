@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthentificationService} from "../service/authentification.service";
 import {User} from "../model/model.user";
+declare var $: any;
 
 @Component({
   selector: 'app-header',
@@ -8,11 +8,23 @@ import {User} from "../model/model.user";
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  user : User;
 
-  constructor(
-    private loginService : AuthentificationService) { }
+  constructor() { }
 
   ngOnInit() {
+    this.user = new User();
+  }
+
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem('id');
+    if(user != null){
+      this.user.name = sessionStorage.getItem("name");
+      this.user.firstName = sessionStorage.getItem("firstName");
+      $('#signin').modal('hide');
+      $('#register').modal('hide');
+    }
+    return !(user === null);
   }
 
 

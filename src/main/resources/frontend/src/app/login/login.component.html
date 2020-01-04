@@ -1,4 +1,4 @@
-<form id="signin" class="modal fade" method="post" (ngSubmit)="checkLogin()" role="dialog">
+<form id="signin" class="modal fade" method="post" (ngSubmit)="checkLogin()" role="dialog" ngNativeValidate>
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -11,13 +11,17 @@
             <label class="col-form-label-lg" for="signinMail" >Email</label>
           </li>
           <li>
-            <input type="mail" name="mail" class="form-control" id="signinMail" required="required" placeholder="exemple@mail.com" [(ngModel)]="mail"/>
+            <input type="email" name="mail" class="form-control" id="signinMail" maxlength="100" required="required" placeholder="exemple@mail.com" [(ngModel)]="mail"/>
           </li>
           <li>
             <label for="signinPW" class="col-form-label-lg">Mot de passe</label>
           </li>
           <li>
-            <input type="password" name="password" class="form-control" id="signinPW" placeholder="motdepasse" required="required" [(ngModel)]="password"/>
+            <input type="password" name="password" class="form-control" maxlength="20" id="signinPW" placeholder="motdepasse" required="required" [(ngModel)]="password"/>
+          </li>
+          <li>
+            <p id="wrongPasswordMatch" class="wrong">Le mot de passe doit contenir 1 majuscule, 1 minucule, une caractère numérique,
+              un caractère spécial (!, @, $, &, *) et avoir une longueur minimale de 6 ! </p>
           </li>
         </ul>
       </div>
@@ -25,7 +29,7 @@
         <p>Vous n'avez pas de compte ?
           <a href="#" class="text-primary" data-dismiss="modal" data-toggle="modal" data-target="#register">Inscrivez-vous !</a>
         </p>
-        <button id="signinButton" class="btn btn-primary">Se connecter</button>
+        <input type="submit" id="signinButton" class="btn btn-primary" value="Se connecter">
       </div>
     </div>
   </div>
