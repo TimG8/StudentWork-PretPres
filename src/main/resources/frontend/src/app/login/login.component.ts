@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     $(".wrong").css("display","none");
 
     if(!this.password.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@\\$&\\*])(?=.{6,})")){
-      $("#wrongPasswordMatch").css("display","block");
+      $("#wrongPasswordMatchLogin").css("display","block");
       return;
     }
     this.loginService.authenticate(this.mail, this.password);

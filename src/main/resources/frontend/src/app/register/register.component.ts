@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit {
     let register = true;
 
     if(!this.password.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@\\$&\\*])(?=.{6,})")){
-      $("#wrongPasswordMatch").css("display","block");
+      $("#wrongPasswordMatchRegister").css("display","block");
       register = false;
     }
 
