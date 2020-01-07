@@ -1,34 +1,52 @@
 import { Injectable } from '@angular/core';
 import {User} from "../model/model.user";
+import {HttpClient} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthentificationService {
-  user : User;
 
-  constructor() {
-    this.user = new User();
+  constructor(
+    private httpClient:HttpClient
+  ) {
   }
 
   authenticate(mail, password) {
-    if (mail === "jean@gmail.com" && password === "password") {
-      sessionStorage.setItem('mail', mail)
-      this.user.mail = mail;
-      return true;
-    } else {
-      return false;
-    }
+    let request = 'http://localhost:8080/user/login/'+mail+'/'+password;
+    this.httpClient.get<User>(request)
+      .subscribe((user : User) => {
+        if(user !== null){
+          this.setSessionItems(user);
+        }else{
+          alert("Le mail ou le mot de passe est incorrect ! ")
+        }
+      });
   }
 
-  isUserLoggedIn() {
-    let user = sessionStorage.getItem('mail')
-    console.log(!(user === null))
-    return !(user === null)
+  setSessionItems(user : User){
+    sessionStorage.setItem("id",user.id);
+    sessionStorage.setItem("name",user.name);
+    sessionStorage.setItem("firstName",user.firstName);
+    sessionStorage.setItem("mail",user.mail);
+    sessionStorage.setItem("password",user.password);
+    sessionStorage.setItem("phone",user.phoneNumber);
   }
 
   logOut() {
-    sessionStorage.removeItem('mail')
+    sessionStorage.clear();
+  }
+
+  register(user : User){
+    let request = 'http://localhost:8080/user/';
+    this.httpClient.post<User>(request,user)
+      .subscribe((user : User) => {
+        if(user !== null){
+          this.setSessionItems(user);
+        }else{
+          alert("L'adresse mail est déjà utilisée !");
+        }
+    });
   }
 
 }

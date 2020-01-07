@@ -12,14 +12,14 @@
         <a class="nav-link" href="#">Contacts</a>
       </li>
     </ul>
-    <div *ngIf="!loginService.isUserLoggedIn()">
+    <div *ngIf="!isUserLoggedIn()">
       <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signin">Se connecter</button>
       <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#register">S'inscrire</button>
     </div>
-    <div *ngIf="loginService.isUserLoggedIn()">
-      <p class="navbar-brand">Bienvenue {{this.loginService.user.mail}} !</p>
+    <div *ngIf="isUserLoggedIn()">
+      <p class="navbar-brand">Bienvenue {{user.firstName}} {{user.name}} !</p>
       <button type="button" class="d-inline btn btn-primary">Mon profil</button>
-      <button type="button" class="d-inline btn btn-secondary" (click)="loginService.logOut()">Se déconnecter</button>
+      <app-logout></app-logout>
     </div>
   </div>
 </nav>
