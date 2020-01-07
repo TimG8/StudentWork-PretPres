@@ -45,6 +45,11 @@ export class AuthentificationService {
     sessionStorage.setItem("phone",user.phoneNumber);
   }
 
+  isLoggedIn() {
+    let user = sessionStorage.getItem('id')
+    return !(user === null)
+  }
+
   logOut() {
     sessionStorage.clear();
   }
