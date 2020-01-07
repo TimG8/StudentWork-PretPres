@@ -35,6 +35,18 @@ public class UserController {
         return user;
     }
 
+    @PutMapping
+    @RequestMapping("update")
+    public User updateUser(@RequestBody User user){
+        return userManager.updateUser(user);
+    }
+
+    @PutMapping
+    @RequestMapping("update")
+    public User updatePassword(@RequestBody User user,@RequestBody String password){
+        return userManager.updatePassword(user,password);
+    }
+
     @RequestMapping("feed")
     public User addUsers(){
         userManager.addUser("Romain","boisson","romain.boisson@gmail.com","roro");
