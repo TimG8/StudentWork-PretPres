@@ -8,4 +8,7 @@ public interface IUserManagement {
     public User getUser(String mail);
     public User add(User user);
     public User addUser(String firstname, String name, String mail, String password);
+    public User updateUser(User user);
+    public User updatePassword(User user, String password);
+    public void deleteUser(String mail);
 }

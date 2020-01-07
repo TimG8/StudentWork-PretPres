@@ -21,9 +21,9 @@ public class UserController {
         return allUser;
     }
 
-
-    @RequestMapping(path = {"login/{mail}/{password}"} )
-    public User login(@PathVariable("mail") String mail, @PathVariable("password") String password){
+    @PostMapping
+    @RequestMapping("login")
+    public User login(@RequestParam("mail") String mail,@RequestParam("password") String password){
         return userManager.getUser(mail, password);
     }
 
@@ -36,13 +36,17 @@ public class UserController {
         return user;
     }
 
-
     @RequestMapping("todelete")
-    public User addUsers(Model model){
+    public User addUsers(){
         userManager.addUser("Romain","boisson","romain.boisson@gmail.com","roro");
         userManager.addUser("Reynald","Barbal","reyno.barbal@gmail.com","reyrey");
         userManager.addUser("test","Test","test","test");
         return userManager.addUser("tomothée","Guy","timtim@guy.com","gaygay");
     }
-    
+
+    @DeleteMapping
+    @RequestMapping("delete")
+    public void deleteUser(@RequestParam("mail") String mail){
+        userManager.deleteUser(mail);
+    }
 }

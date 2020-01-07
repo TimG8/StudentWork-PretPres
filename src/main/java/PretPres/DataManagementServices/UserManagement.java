@@ -32,12 +32,46 @@ public class UserManagement implements IUserManagement {
         return userRepo.save(user);
     }
 
+    @Override
     public User addUser(String firstname, String name, String mail, String password){
-        var user = new User();
-        user.setFirstName(firstname);
-        user.setName(name);
-        user.setMail(mail);
-        user.setPassword(password);
+        var user = new User(firstname,name,mail,password);
         return userRepo.save(user);
+    }
+
+    @Override
+    public User updateUser(User user){
+        var isReal =  userRepo.findById(user.getId());
+        if(isReal.isEmpty()){
+           return null;
+        }
+
+        var dbUser = isReal.get();
+        dbUser.setFirstName(user.getFirstName());
+        dbUser.setMail(user.getMail());
+        dbUser.setName(user.getName());
+        dbUser.setAddress(user.getAddress());
+        dbUser.setDate(user.getDate());
+        dbUser.setPhoneNumber(user.getPhoneNumber());
+
+        return userRepo.save(user);
+    }
+
+    @Override
+    public User updatePassword(User user,String password){
+        var isReal =  userRepo.findById(user.getId());
+        if(isReal.isEmpty()){
+            return null;
+        }
+
+        var dbUser = isReal.get();
+        dbUser.setPassword(user.getPassword());
+        
+        return userRepo.save(user);
+    }
+
+    @Override
+    public void deleteUser(String mail){
+        var user = userRepo.findByMail(mail);
+        userRepo.delete(user);
     }
 }

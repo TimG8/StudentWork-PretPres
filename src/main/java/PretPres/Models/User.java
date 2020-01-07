@@ -21,8 +21,13 @@ public class User {
     private Date date;
     private String address;
 
+    public User(String firstname,String name, String mail, String password){
+        this.firstName = firstname;
+        this.name = name;
+        this.mail = mail ;
+        this.password = password;
+    }
     public User(){
-
     }
 
     public User(String password,String mail,String phoneNumber,String firstName, String name,Date date,String address) {
