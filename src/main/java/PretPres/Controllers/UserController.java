@@ -17,8 +17,7 @@ public class UserController {
     IUserManagement userManager;
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public Iterable<User> index(@RequestParam(value="name", defaultValue="World") String name, Model model) {
-        Iterable<User> allUser =userManager.getAllUsers();
-        return allUser;
+        return userManager.getAllUsers();
     }
 
     @PostMapping
@@ -36,7 +35,7 @@ public class UserController {
         return user;
     }
 
-    @RequestMapping("todelete")
+    @RequestMapping("feed")
     public User addUsers(){
         userManager.addUser("Romain","boisson","romain.boisson@gmail.com","roro");
         userManager.addUser("Reynald","Barbal","reyno.barbal@gmail.com","reyrey");

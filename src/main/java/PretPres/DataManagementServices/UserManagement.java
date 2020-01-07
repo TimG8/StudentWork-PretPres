@@ -65,7 +65,7 @@ public class UserManagement implements IUserManagement {
 
         var dbUser = isReal.get();
         dbUser.setPassword(user.getPassword());
-        
+
         return userRepo.save(user);
     }
 
