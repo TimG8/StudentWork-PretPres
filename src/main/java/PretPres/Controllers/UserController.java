@@ -14,7 +14,6 @@ public class UserController {
 
     @Autowired
     IUserManagement userManager;
-
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public Iterable<User> index(@RequestParam(value="name", defaultValue="World") String name, Model model) {
         Iterable<User> allUser =userManager.getAllUsers();
@@ -28,5 +27,5 @@ public class UserController {
         userManager.addUser("Reynald","Barbal","reyno.barbal@gmail.com","reyrey");
         return userManager.addUser("tomothée","Guy","timtim@guy.com","gaygay");
     }
-
+    
 }
