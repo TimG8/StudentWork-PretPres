@@ -1,11 +1,15 @@
 import { Injectable } from '@angular/core';
 import {User} from "../model/model.user";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
+import {error} from "util";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthentificationService {
+  baseUrl = 'http://localhost:8080/user';
+
+
 
   constructor(
     private httpClient:HttpClient
@@ -13,15 +17,23 @@ export class AuthentificationService {
   }
 
   authenticate(mail, password) {
-    let request = 'http://localhost:8080/user/login/'+mail+'/'+password;
-    this.httpClient.get<User>(request)
+    let request = this.baseUrl+'/login';
+    let params = new HttpParams()
+      .set("mail", mail)
+      .set("password", password);
+
+
+    this.httpClient.post<User>(request,params)
       .subscribe((user : User) => {
         if(user !== null){
           this.setSessionItems(user);
         }else{
-          alert("Le mail ou le mot de passe est incorrect ! ")
+          alert("Le mail ou le mot de passe est incorrect ! ");
         }
-      });
+      },
+      (error : HttpErrorResponse) => {
+        alert("Le mail ou le mot de passe est incorrect ! ");
+    });
   }
 
   setSessionItems(user : User){
@@ -38,7 +50,7 @@ export class AuthentificationService {
   }
 
   register(user : User){
-    let request = 'http://localhost:8080/user/';
+    let request = this.baseUrl+'/login';
     this.httpClient.post<User>(request,user)
       .subscribe((user : User) => {
         if(user !== null){

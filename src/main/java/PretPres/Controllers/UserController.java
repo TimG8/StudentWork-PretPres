@@ -42,17 +42,17 @@ public class UserController {
     }
 
     @PutMapping
-    @RequestMapping("update")
+    @RequestMapping("updatePassword")
     public User updatePassword(@RequestBody User user,@RequestBody String password){
         return userManager.updatePassword(user,password);
     }
 
     @RequestMapping("feed")
     public User addUsers(){
-        userManager.addUser("Romain","boisson","romain.boisson@gmail.com","roro");
-        userManager.addUser("Reynald","Barbal","reyno.barbal@gmail.com","reyrey");
-        userManager.addUser("test","Test","test","test");
-        return userManager.addUser("tomothée","Guy","timtim@guy.com","gaygay");
+        userManager.addUser("Romain","boisson","romain.boisson@gmail.com","Roro92!");
+        userManager.addUser("Reynald","Barbal","reyno.barbal@gmail.com","Reyrey92!");
+        userManager.addUser("test","Test","test@t.t","Test92!");
+        return userManager.addUser("tomothée","Guy","timtim@guy.com","Gaygay92");
     }
 
     @DeleteMapping
