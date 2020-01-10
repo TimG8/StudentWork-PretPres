@@ -1,4 +1,74 @@
-<!-- Begin page content -->
-<main role="main" class="container">
+<div class="container-fluid">
   <h2 class="mt-5">Votre profil</h2>
-</main>
+  <div class="form-group row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <form class="card-body" ngNativeValidate>
+          <h5 class="card-title">Modifier votre mail</h5>
+          <div class="form-group row">
+            <label for="mailProfile" class="col-sm-5 col-form-label">Votre adresse mail actuelle</label>
+            <input type="email" readonly class="form-control-plaintext col-sm-5" id="mailProfile" value={{this.user.mail}}>
+          </div>
+          <div class="form-group row">
+            <label for="newMailProfile" class="col-sm-5 col-form-label">Votre nouvelle adresse mail</label>
+            <input type="email" name="mail" required="required" class="form-control col-sm-5" id="newMailProfile"  [(ngModel)]="mail">
+          </div>
+          <button type="submit" class="btn btn-primary mb-2">Changer de mail</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <form class="card-body" ngNativeValidate>
+          <h5 class="card-title">Modifier votre mot de passe</h5>
+          <div class="form-group row">
+            <label for="passwordProfile" class="col-sm-5 col-form-label">Mettre votre ancien mot de passe</label>
+            <input type="password" name="password" required="required" class="form-control col-sm-5" id="passwordProfile" [(ngModel)]="password">
+          </div>
+          <div class="form-group row">
+            <label for="newPasswordProfile" class="col-sm-5 col-form-label">Ecrivez votre nouveau mot de passe</label>
+            <input type="password" name="newPassword" required="required" class="form-control col-sm-5" id="newPasswordProfile" [(ngModel)]="newPassword">
+          </div>
+          <div class="form-group row">
+            <label for="confimNewPasswordProfile" class="col-sm-5 col-form-label">Confirmez votre nouveau mot de passe</label>
+            <input type="password" required="required" name="confirmNewPassword" class="form-control col-sm-5" id="confimNewPasswordProfile" [(ngModel)]="confirmNewPassword">
+          </div>
+          <button type="submit" class="btn btn-primary mb-2">Changer mot de passe</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+          <form class="card-body" ngNativeValidate>
+            <h5 class="card-title border-bottom border-dark">Modifier vos autres informations</h5>
+            <h6 class="card-title">Modifier votre nom</h6>
+            <div class="form-group row">
+              <label for="nameProfile" class="col-sm-5 col-form-label">Votre nom actuel</label>
+              <input type="text" readonly class="form-control-plaintext col-sm-5" id="nameProfile" value={{this.user.name}}>
+            </div>
+            <div class="form-group row">
+              <label for="newNameProfile" class="col-sm-5 col-form-label">Votre nouveau nom</label>
+              <input type="text" name="name" required="required" class="form-control col-sm-5" id="newNameProfile" [(ngModel)]="name">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Changer de nom</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <form class="card-body" ngNativeValidate>
+            <h6 class="card-title">Modifier votre prénom</h6>
+            <div class="form-group row">
+              <label for="firstNameProfile" class="col-sm-5 col-form-label">Votre prénom actuel</label>
+              <input type="text" readonly class="form-control-plaintext col-sm-5" id="firstNameProfile" value={{this.user.firstName}}>
+            </div>
+            <div class="form-group row">
+              <label for="newfirstNameProfile" class="col-sm-5 col-form-label">Votre nouveau pénom</label>
+              <input type="text" required="required" name="firstName" class="form-control col-sm-5" id="newfirstNameProfile" [(ngModel)]="firstName">
+            </div>
+            <button type="submit" class="btn btn-primary mb-2">Changer de pénom</button>
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+

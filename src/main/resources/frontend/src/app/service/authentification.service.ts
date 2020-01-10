@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import {User} from "../model/model.user";
 import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
-import {error} from "util";
-
+import {Router} from "@angular/router";
 @Injectable({
   providedIn: 'root'
 })
@@ -12,7 +11,8 @@ export class AuthentificationService {
 
 
   constructor(
-    private httpClient:HttpClient
+    private httpClient:HttpClient,
+    private router: Router
   ) {
   }
 
@@ -46,12 +46,13 @@ export class AuthentificationService {
   }
 
   isLoggedIn() {
-    let user = sessionStorage.getItem('id')
+    let user = sessionStorage.getItem('id');
     return !(user === null)
   }
 
   logOut() {
     sessionStorage.clear();
+    this.router.navigate(['']);
   }
 
   register(user : User){
