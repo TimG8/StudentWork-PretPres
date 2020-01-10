@@ -1,5 +1,7 @@
 package PretPres.Controllers;
 
+import PretPres.DataManagementServices.IRoleManagement;
+import PretPres.Models.Role;
 import PretPres.Models.User;
 import PretPres.DataManagementServices.IUserManagement;
 
@@ -13,6 +15,8 @@ import org.springframework.ui.Model;
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
+    @Autowired
+    IRoleManagement roleManager;
     @Autowired
     IUserManagement userManager;
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
@@ -49,10 +53,11 @@ public class UserController {
 
     @RequestMapping("feed")
     public User addUsers(){
-        userManager.addUser("Romain","boisson","romain.boisson@gmail.com","Roro92!");
-        userManager.addUser("Reynald","Barbal","reyno.barbal@gmail.com","Reyrey92!");
-        userManager.addUser("test","Test","test@t.t","Test92!");
-        return userManager.addUser("tomothée","Guy","timtim@guy.com","Gaygay92");
+        var role = roleManager.addRole("Admin");
+        userManager.addUser("Romain","boisson","romain.boisson@gmail.com","Roro92!",role);
+        userManager.addUser("Reynald","Barbal","reyno.barbal@gmail.com","Reyrey92!",role);
+        userManager.addUser("test","Test","test@t.t","Test92!",role );
+        return userManager.addUser("tomothée","Guy","timtim@guy.com","Gaygay92",role);
     }
 
     @DeleteMapping
