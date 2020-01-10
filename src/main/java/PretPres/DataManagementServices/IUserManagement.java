@@ -1,5 +1,6 @@
 package PretPres.DataManagementServices;
 
+import PretPres.Models.Role;
 import PretPres.Models.User;
 
 public interface IUserManagement {
@@ -7,7 +8,7 @@ public interface IUserManagement {
     public User getUser(String mail, String password);
     public User getUser(String mail);
     public User add(User user);
-    public User addUser(String firstname, String name, String mail, String password);
+    public User addUser(String firstname, String name, String mail, String password, Role r);
     public User updateUser(User user);
     public User updatePassword(User user, String password);
     public void deleteUser(String mail);

@@ -1,5 +1,7 @@
 package PretPres.Models;
 
+import org.springframework.beans.factory.annotation.Required;
+
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
@@ -19,6 +21,7 @@ public class User {
     private Date date;
     private String address;
 
+
     @ManyToOne
     private Role role;
 
@@ -27,14 +30,15 @@ public class User {
 
     public User() {}
 
-    public User(String firstname, String name, String mail, String password) {
+    public User(String firstname, String name, String mail, String password, Role r) {
         this.firstName = firstname;
         this.name = name;
         this.mail = mail ;
         this.password = password;
+        this.role = r;
     }
 
-    public User(String password, String mail, String phoneNumber, String firstName, String name, Date date, String address) {
+    public User(String password, String mail, String phoneNumber, String firstName, String name, Date date, String address, Role r) {
         this.password = password;
         this.mail = mail;
         this.phoneNumber = phoneNumber;
@@ -42,7 +46,7 @@ public class User {
         this.name = name;
         this.date = date;
         this.address = address;
-
+        this.role = r;
     }
 
     public long getId() {

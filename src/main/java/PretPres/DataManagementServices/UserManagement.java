@@ -1,5 +1,6 @@
 package PretPres.DataManagementServices;
 
+import PretPres.Models.Role;
 import PretPres.Models.User;
 import PretPres.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +34,8 @@ public class UserManagement implements IUserManagement {
     }
 
     @Override
-    public User addUser(String firstname, String name, String mail, String password){
-        var user = new User(firstname,name,mail,password);
+    public User addUser(String firstname, String name, String mail, String password, Role r){
+        var user = new User(firstname,name,mail,password,r);
         return userRepo.save(user);
     }
 
