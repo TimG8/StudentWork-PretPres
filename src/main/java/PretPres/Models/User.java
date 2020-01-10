@@ -1,9 +1,6 @@
 package PretPres.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -13,6 +10,9 @@ public class User {
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     private String password;
+
+    @ManyToOne
+    private Role role;
 
     private String mail;
     private String phoneNumber;
@@ -103,5 +103,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }
