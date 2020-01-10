@@ -3,7 +3,7 @@
   <div class="form-group row justify-content-center">
     <div class="col-md-6">
       <div class="card">
-        <form class="card-body" ngNativeValidate>
+        <form class="card-body" ngNativeValidate (ngSubmit)="updateMail()" >
           <h5 class="card-title">Modifier votre mail</h5>
           <div class="form-group row">
             <label for="mailProfile" class="col-sm-5 col-form-label">Votre adresse mail actuelle</label>
@@ -18,7 +18,7 @@
       </div>
 
       <div class="card">
-        <form class="card-body" ngNativeValidate>
+        <form class="card-body" ngNativeValidate (ngSubmit)="updatePassword()">
           <h5 class="card-title">Modifier votre mot de passe</h5>
           <div class="form-group row">
             <label for="passwordProfile" class="col-sm-5 col-form-label">Mettre votre ancien mot de passe</label>
@@ -39,7 +39,7 @@
 
     <div class="col-md-6">
         <div class="card">
-          <form class="card-body" ngNativeValidate>
+          <form class="card-body" ngNativeValidate (ngSubmit)="updateName()">
             <h5 class="card-title border-bottom border-dark">Modifier vos autres informations</h5>
             <h6 class="card-title">Modifier votre nom</h6>
             <div class="form-group row">
@@ -55,7 +55,7 @@
         </div>
 
         <div class="card">
-          <form class="card-body" ngNativeValidate>
+          <form class="card-body" ngNativeValidate (ngSubmit)="updateFirstName()">
             <h6 class="card-title">Modifier votre prénom</h6>
             <div class="form-group row">
               <label for="firstNameProfile" class="col-sm-5 col-form-label">Votre prénom actuel</label>

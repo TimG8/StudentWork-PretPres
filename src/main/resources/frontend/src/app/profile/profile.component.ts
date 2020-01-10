@@ -22,4 +22,20 @@ export class ProfileComponent implements OnInit {
     this.user.getSessionItems();
   }
 
+  updateMail(){
+    alert("Mail updated");
+  }
+
+  updatePassword(){
+    alert("password updated");
+  }
+
+  updateName(){
+    alert("name updated");
+  }
+
+  updateFirstName(){
+    alert("fistname updated");
+  }
+
 }
