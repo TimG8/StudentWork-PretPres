@@ -9,6 +9,8 @@ public class Role {
     private long id;
     private String name;
 
+    public Role(){    }
+
     public Role(String n){
         this.name = n;
     }

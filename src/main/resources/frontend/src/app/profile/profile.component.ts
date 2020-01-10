@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../model/model.user";
+import {ProfileService} from "./profile.service";
+declare var $: any;
 
 @Component({
   selector: 'app-profile',
@@ -15,7 +17,9 @@ export class ProfileComponent implements OnInit {
   name: "";
   firstName: "";
 
-  constructor() { }
+  constructor(
+    private updateService : ProfileService
+  ) { }
 
   ngOnInit() {
     this.user = new User();
@@ -23,6 +27,12 @@ export class ProfileComponent implements OnInit {
   }
 
   updateMail(){
+    if(this.mail != this.user.mail){
+      let user = this.user;
+      user.mail = this.mail;
+      this.updateService.updateMail(user);
+      this.user.getSessionItems();
+    }
     alert("Mail updated");
   }
 
@@ -31,11 +41,24 @@ export class ProfileComponent implements OnInit {
   }
 
   updateName(){
-    alert("name updated");
+    if(!this.name.match("^[-'a-zA-ZÀ-ÖØ-öø-ſ]+$")){
+      alert("Le nom ne correspond pas à un vrai nom !");
+      return;
+    }
+    this.updateService.updateName(this.user.id,this.name);
+    this.user.getSessionItems();
+
   }
 
   updateFirstName(){
-    alert("fistname updated");
+    if(!this.name.match("^[-'a-zA-ZÀ-ÖØ-öø-ſ]+$")){
+      alert("Le prénom ne correspond pas à un vrai nom !");
+      return;
+    }
+    let user = this.user;
+    user.firstName = this.firstName;
+    this.updateService.updateFirstName(user);
+    this.user.getSessionItems();
   }
 
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {User} from "../model/model.user";
-import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
 @Injectable({
   providedIn: 'root'
@@ -32,7 +32,8 @@ export class AuthentificationService {
         }
       },
       (error : HttpErrorResponse) => {
-        alert("Le mail ou le mot de passe est incorrect ! ");
+        console.log(error);
+        alert("Le mail ou le mot de passe est incorrect ! 1");
     });
   }
 

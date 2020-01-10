@@ -9,6 +9,6 @@ import java.util.Collection;
 
 @Repository
 public interface AdvertisementRepository extends CrudRepository<User, Long> {
-    Collection<Advertisement> findByTitle(String title);
-    Collection<Advertisement> findByPrice(float price);
+    //Collection<Advertisement> findByTitle(String title);
+    //Collection<Advertisement> findByPrice(float price);
 }

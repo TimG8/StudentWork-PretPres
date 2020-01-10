@@ -11,5 +11,6 @@ public interface IUserManagement {
     public User addUser(String firstname, String name, String mail, String password, Role r);
     public User updateUser(User user);
     public User updatePassword(User user, String password);
+    public User updateName(Long id, String name);
     public void deleteUser(String mail);
 }

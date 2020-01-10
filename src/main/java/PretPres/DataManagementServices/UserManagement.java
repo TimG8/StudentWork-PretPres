@@ -54,7 +54,7 @@ public class UserManagement implements IUserManagement {
         dbUser.setDate(user.getDate());
         dbUser.setPhoneNumber(user.getPhoneNumber());
 
-        return userRepo.save(user);
+        return userRepo.save(dbUser);
     }
 
     @Override
@@ -67,7 +67,20 @@ public class UserManagement implements IUserManagement {
         var dbUser = isReal.get();
         dbUser.setPassword(user.getPassword());
 
-        return userRepo.save(user);
+        return userRepo.save(dbUser);
+    }
+
+    @Override
+    public User updateName(Long id, String name) {
+        var isReal =  userRepo.findById(id);
+        if(isReal.isEmpty()){
+            return null;
+        }
+
+        var dbUser = isReal.get();
+        dbUser.setName(name);
+
+        return userRepo.save(dbUser);
     }
 
     @Override

@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
-
 @RestController
 @RequestMapping("/user")
-@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     @Autowired
@@ -43,6 +41,12 @@ public class UserController {
     @RequestMapping("update")
     public User updateUser(@RequestBody User user){
         return userManager.updateUser(user);
+    }
+
+    @PutMapping
+    @RequestMapping("updateName")
+    public User updateName(@RequestParam("id") Long id,@RequestParam("name") String name){
+        return userManager.updateName(id,name);
     }
 
     @PutMapping

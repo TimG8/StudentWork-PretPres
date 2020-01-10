@@ -1,3 +1,5 @@
+import {Role} from "./model.role";
+
 export class User {
    id;
    password = "";
@@ -5,6 +7,7 @@ export class User {
    phoneNumber = "";
    firstName = "";
    name = "";
+   role : Role;
 
   public setSessionItems(){
     sessionStorage.setItem("id",this.id);
@@ -12,6 +15,7 @@ export class User {
     sessionStorage.setItem("firstName",this.firstName);
     sessionStorage.setItem("mail",this.mail);
     sessionStorage.setItem("password",this.password);
+    sessionStorage.setItem("phone",this.phoneNumber);
     sessionStorage.setItem("phone",this.phoneNumber);
   }
 
