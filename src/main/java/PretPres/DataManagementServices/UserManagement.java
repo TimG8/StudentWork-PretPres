@@ -19,13 +19,23 @@ public class UserManagement implements IUserManagement {
     }
 
     @Override
+    public Iterable<User> findUsers(String mail) {
+        return null;
+    }
+
+    @Override
     public User getUser(String mail, String password) {
         return userRepo.findByMailAndPassword(mail, password);
     }
 
     @Override
     public User getUser(String mail) {
-        return userRepo.findByMail(mail);
+        return userRepo.findByMail(mail).iterator().next();
+    }
+
+    @Override
+    public User getUser(Long id) {
+        return userRepo.findById(id).orElse(null);
     }
 
     @Override
@@ -71,6 +81,17 @@ public class UserManagement implements IUserManagement {
     }
 
     @Override
+    public User updatePassword(Long id, String password) {
+        var isReal =  userRepo.findById(id);
+        if(isReal.isEmpty()){
+            return null;
+        }
+        var dbUser = isReal.get();
+        dbUser.setPassword(password);
+        return userRepo.save(dbUser);
+    }
+
+    @Override
     public User updateName(Long id, String name) {
         var isReal =  userRepo.findById(id);
         if(isReal.isEmpty()){
@@ -84,8 +105,48 @@ public class UserManagement implements IUserManagement {
     }
 
     @Override
-    public void deleteUser(String mail){
-        var user = userRepo.findByMail(mail);
+    public User updateMail(Long id, String mail) {
+        boolean singleMail = true;
+
+        var isReal =  userRepo.findById(id);
+        if(isReal.isEmpty()){
+            return null;
+        }
+
+        for(User user : userRepo.findByMail(mail)){
+            if(user.getMail().equals(mail) && user.getId() != id){
+                singleMail = false;
+                break;
+            }
+        }
+        if(!singleMail){
+            return null;
+        }
+
+        var dbUser = isReal.get();
+        dbUser.setMail(mail);
+
+        return userRepo.save(dbUser);
+
+
+    }
+
+    @Override
+    public User updateFirstName(Long id, String firstName) {
+        var isReal =  userRepo.findById(id);
+        if(isReal.isEmpty()){
+            return null;
+        }
+
+        var dbUser = isReal.get();
+        dbUser.setFirstName(firstName);
+
+        return userRepo.save(dbUser);
+    }
+
+    @Override
+    public void deleteUser(Long id){
+        var user = userRepo.findById(id).orElse(null);
         userRepo.delete(user);
     }
 }

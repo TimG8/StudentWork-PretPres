@@ -50,9 +50,21 @@ public class UserController {
     }
 
     @PutMapping
+    @RequestMapping("updateFirstName")
+    public User updateFirstName(@RequestParam("id") Long id,@RequestParam("firstName") String firstName){
+        return userManager.updateName(id,firstName);
+    }
+
+    @PutMapping
     @RequestMapping("updatePassword")
-    public User updatePassword(@RequestBody User user,@RequestBody String password){
-        return userManager.updatePassword(user,password);
+    public User updatePassword(@RequestParam("id") Long id,@RequestParam("password") String password){
+        return userManager.updatePassword(id,password);
+    }
+
+    @PutMapping
+    @RequestMapping("updateMail")
+    public User updateMail(@RequestParam("id") Long id,@RequestParam("mail") String mail){
+        return userManager.updateMail(id,mail);
     }
 
     @RequestMapping("feed")
@@ -66,7 +78,7 @@ public class UserController {
 
     @DeleteMapping
     @RequestMapping("delete")
-    public void deleteUser(@RequestParam("mail") String mail){
-        userManager.deleteUser(mail);
+    public void deleteUser(@RequestParam("id") Long id){
+        userManager.deleteUser(id);
     }
 }

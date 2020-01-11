@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../model/model.user";
-import {ProfileService} from "./profile.service";
+import {HttpClient, HttpErrorResponse, HttpParams} from "@angular/common/http";
 declare var $: any;
 
 @Component({
@@ -9,6 +9,8 @@ declare var $: any;
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  baseUrl = 'http://localhost:8080/user';
+
   user : User;
   mail: "";
   password: "";
@@ -18,7 +20,7 @@ export class ProfileComponent implements OnInit {
   firstName: "";
 
   constructor(
-    private updateService : ProfileService
+    private httpClient:HttpClient
   ) { }
 
   ngOnInit() {
@@ -27,17 +29,57 @@ export class ProfileComponent implements OnInit {
   }
 
   updateMail(){
-    if(this.mail != this.user.mail){
-      let user = this.user;
-      user.mail = this.mail;
-      this.updateService.updateMail(user);
-      this.user.getSessionItems();
+    if(this.mail == this.user.mail){
+      alert("Le nouveau mail est le même que l'ancien");
+      return;
     }
-    alert("Mail updated");
+
+    let request = this.baseUrl+'/updateMail';
+    let params = new HttpParams()
+      .set("id", this.user.id)
+      .set("mail", this.mail);
+
+    this.httpClient.put<User>(request,params)
+      .subscribe((user : User) => {
+        if(user !== null){
+          sessionStorage.setItem("mail",user.mail);
+          $("#mailProfile").val(user.mail);
+
+        }else{
+          alert("Le mail existe déjà ! ");
+        }
+      },
+        (error : HttpErrorResponse) => {
+        console.log(error);
+        alert("Une erreur à eu lieu.");
+      });
   }
 
   updatePassword(){
-    alert("password updated");
+    if(this.password != this.user.password){
+      alert("Mot de passe incorrect ! ");
+      return;
+    }
+
+    if(this.newPassword != this.confirmNewPassword){
+      alert("Votre nouveau mot de passe et la confirmation de votre mot de passe sont différents !");
+      return;
+    }
+    let request = this.baseUrl+'/updatePassword';
+    let params = new HttpParams()
+      .set("id", this.user.id)
+      .set("password", this.newPassword);
+
+    this.httpClient.put<User>(request,params)
+      .subscribe((user : User) => {
+          if(user !== null){
+            sessionStorage.setItem("password",user.password);
+          }
+        },
+        (error : HttpErrorResponse) => {
+          console.log(error);
+          alert("Une erreur à eu lieu.");
+        });
   }
 
   updateName(){
@@ -45,8 +87,25 @@ export class ProfileComponent implements OnInit {
       alert("Le nom ne correspond pas à un vrai nom !");
       return;
     }
-    this.updateService.updateName(this.user.id,this.name);
-    this.user.getSessionItems();
+
+    let request = this.baseUrl+'/updateName';
+    let params = new HttpParams()
+      .set("id", this.user.id)
+      .set("name",this.name);
+
+    this.httpClient.post<User>(request,params)
+      .subscribe((user : User) => {
+          if(user !== null){
+            sessionStorage.setItem("name",user.name);
+            $('#nameProfile').val(user.name);
+          }else{
+            alert("Erreur dans le changement de nom !");
+          }
+        },
+        (error : HttpErrorResponse) => {
+          console.log(error);
+          alert("Erreur dans le changement de nom !");
+        });
 
   }
 
@@ -55,10 +114,23 @@ export class ProfileComponent implements OnInit {
       alert("Le prénom ne correspond pas à un vrai nom !");
       return;
     }
-    let user = this.user;
-    user.firstName = this.firstName;
-    this.updateService.updateFirstName(user);
-    this.user.getSessionItems();
+    let request = this.baseUrl+'/updateFirstName';
+    let params = new HttpParams()
+      .set("id", this.user.id)
+      .set("firstName",this.firstName);
+
+    this.httpClient.put<User>(request,params)
+      .subscribe((user : User) => {
+          if(user !== null){
+            sessionStorage.setItem("firstName",user.firstName);
+            $("#firstNameProfile").val(user.firstName);
+          }else{
+            alert("Erreur dans le changement de prénom !");
+          }
+        },
+        (error : HttpErrorResponse) => {
+          alert("Erreur dans le changement de prénom !");
+        });
   }
 
 }

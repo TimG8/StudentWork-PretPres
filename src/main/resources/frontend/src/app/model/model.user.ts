@@ -16,7 +16,6 @@ export class User {
     sessionStorage.setItem("mail",this.mail);
     sessionStorage.setItem("password",this.password);
     sessionStorage.setItem("phone",this.phoneNumber);
-    sessionStorage.setItem("phone",this.phoneNumber);
   }
 
   public getSessionItems(){
