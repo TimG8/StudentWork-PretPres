@@ -27,13 +27,15 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     $('#success').modal('hide');
+    $(".wrong").css("display","none");
     this.user = new User();
     this.user.getSessionItems();
   }
 
   updateMail(){
+    $(".wrong").css("display","none");
     if(this.mail == this.user.mail){
-      alert("Le nouveau mail est le même que l'ancien");
+      $("#wrongMailProfile").css("display","block");
       return;
     }
 
@@ -48,6 +50,7 @@ export class ProfileComponent implements OnInit {
           sessionStorage.setItem("mail",user.mail);
           $("#mailProfile").val(user.mail);
           this.displayModal("mail");
+          this.reset();
         }else{
           alert("Le mail existe déjà ! ");
         }
@@ -59,13 +62,25 @@ export class ProfileComponent implements OnInit {
   }
 
   updatePassword(){
+    $(".wrong").css("display","none");
+
     if(this.password != this.user.password){
-      alert("Mot de passe incorrect ! ");
+      $("#wrongPasswordProfile").css("display","block");
       return;
     }
 
     if(this.newPassword != this.confirmNewPassword){
-      alert("Votre nouveau mot de passe et la confirmation de votre mot de passe sont différents !");
+      $("#wrongPasswordConfirmProfile").css("display","block");
+      return;
+    }
+
+    if(!this.newPassword.match("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@\\$&\\*])(?=.{6,})")){
+      $("#wrongPasswordMatchProfile").css("display","block");
+      return;
+    }
+
+    if(this.password == this.newPassword){
+      $("#wrongPasswordSameProfile").css("display","block");
       return;
     }
     let request = this.baseUrl+'/updatePassword';
@@ -78,6 +93,7 @@ export class ProfileComponent implements OnInit {
           if(user !== null){
             sessionStorage.setItem("password",user.password);
             this.displayModal("mot de passe");
+            this.reset();
           }
         },
         (error : HttpErrorResponse) => {
@@ -87,8 +103,9 @@ export class ProfileComponent implements OnInit {
   }
 
   updateName(){
+    $(".wrong").css("display","none");
     if(!this.name.match("^[-'a-zA-ZÀ-ÖØ-öø-ſ]+$")){
-      alert("Le nom ne correspond pas à un vrai nom !");
+      $("#wrongNameProfile").css("display","block");
       return;
     }
 
@@ -103,6 +120,7 @@ export class ProfileComponent implements OnInit {
             sessionStorage.setItem("name",user.name);
             $('#nameProfile').val(user.name);
             this.displayModal("nom");
+            this.reset();
           }else{
             alert("Erreur dans le changement de nom !");
           }
@@ -115,8 +133,9 @@ export class ProfileComponent implements OnInit {
   }
 
   updateFirstName(){
+    $(".wrong").css("display","none");
     if(!this.firstName.match("^[-'a-zA-ZÀ-ÖØ-öø-ſ]+$")){
-      alert("Le prénom ne correspond pas à un vrai nom !");
+      $("#wrongFirstNameProfile").css("display","block");
       return;
     }
     let request = this.baseUrl+'/updateFirstName';
@@ -130,6 +149,7 @@ export class ProfileComponent implements OnInit {
             sessionStorage.setItem("firstName",user.firstName);
             $("#firstNameProfile").val(user.firstName);
             this.displayModal("prénom");
+            this.reset();
           }else{
             alert("Erreur dans le changement de prénom !");
           }
@@ -142,6 +162,17 @@ export class ProfileComponent implements OnInit {
   displayModal(type){
     this.type = type;
     $('#success').modal('show');
+  }
+
+  reset(){
+    this.firstName = "";
+    this.name = "";
+    this.newPassword = "";
+    this.confirmNewPassword = "";
+    this.password = "";
+    this.mail = "";
+
+    this.user.getSessionItems();
   }
 
 }
