@@ -17,36 +17,49 @@ public class AdvertisementManagement implements IAdvertisementManagement {
 
     @Override
     public Iterable<Advertisement> getAllAdvertisements() {
-        return null;
+        return adRepo.findAll();
     }
 
     @Override
     public Collection<Advertisement> getAdvertisementsByTitle(String title) {
-        return null;
+        return adRepo.findByTitleContaining(title);
     }
 
     @Override
     public Collection<Advertisement> getAdvertisementsByPrice(float price) {
-        return null;
+        return adRepo.findByPrice(price);
     }
 
     @Override
-    public Advertisement add(Advertisement Advertisement) {
-        return null;
+    public Advertisement add(String title, String address, String description, float price) {
+        Advertisement ad = new Advertisement(title, address, description, price);
+        return adRepo.save(ad);
     }
 
     @Override
-    public Advertisement addAdvertisement(String title, String address, String description, float price) {
-        return null;
+    public Advertisement addFull(Advertisement ad) {
+        return adRepo.save(ad);
     }
 
     @Override
-    public Advertisement updateAdvertisement(Advertisement Advertisement) {
-        return null;
+    public Advertisement updateAdvertisement(Advertisement advertisement) {
+        Advertisement ad = adRepo.findByUuid(advertisement.getUuid());
+
+        if (ad == null) {
+            return null;
+        }
+
+        ad.setTitle(advertisement.getTitle());
+        ad.setAddress(advertisement.getAddress());
+        ad.setDescription(advertisement.getDescription());
+        ad.setPrice(advertisement.getPrice());
+        ad.setUuid(advertisement.getUuid());
+
+        return adRepo.save(ad);
     }
 
     @Override
-    public void deleteAdvertisement(long id) {
-
+    public void deleteAdvertisement(String uuid) {
+        adRepo.delete(adRepo.findByUuid(uuid));
     }
 }

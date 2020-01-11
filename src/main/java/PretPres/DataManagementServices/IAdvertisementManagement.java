@@ -8,8 +8,8 @@ public interface IAdvertisementManagement {
     Iterable<Advertisement> getAllAdvertisements();
     Collection<Advertisement> getAdvertisementsByTitle(String title);
     Collection<Advertisement> getAdvertisementsByPrice(float price);
-    Advertisement add(Advertisement Advertisement);
-    Advertisement addAdvertisement(String title, String address, String description, float price);
-    Advertisement updateAdvertisement(Advertisement Advertisement);
-    void deleteAdvertisement(long id);
+    Advertisement add(String title, String address, String description, float price);
+    Advertisement addFull(Advertisement ad);
+    Advertisement updateAdvertisement(Advertisement advertisement);
+    void deleteAdvertisement(String uuid);
 }

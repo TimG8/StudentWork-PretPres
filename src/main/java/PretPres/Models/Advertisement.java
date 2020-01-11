@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.UUID;
 
 @Entity
 public class Advertisement {
@@ -15,6 +16,7 @@ public class Advertisement {
     private String address;
     private String description;
     private float price;
+    private String uuid;
 
     // TODO : link image service
 
@@ -25,6 +27,7 @@ public class Advertisement {
         this.address = address;
         this.description = description;
         this.price = price;
+        this.uuid = UUID.randomUUID().toString();
     }
 
     public long getId() {
@@ -65,5 +68,13 @@ public class Advertisement {
 
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }
