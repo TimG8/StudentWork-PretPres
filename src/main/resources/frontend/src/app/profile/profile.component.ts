@@ -19,11 +19,14 @@ export class ProfileComponent implements OnInit {
   name: "";
   firstName: "";
 
+  type: "";
+
   constructor(
     private httpClient:HttpClient
   ) { }
 
   ngOnInit() {
+    $('#success').modal('hide');
     this.user = new User();
     this.user.getSessionItems();
   }
@@ -44,7 +47,7 @@ export class ProfileComponent implements OnInit {
         if(user !== null){
           sessionStorage.setItem("mail",user.mail);
           $("#mailProfile").val(user.mail);
-
+          this.displayModal("mail");
         }else{
           alert("Le mail existe déjà ! ");
         }
@@ -74,6 +77,7 @@ export class ProfileComponent implements OnInit {
       .subscribe((user : User) => {
           if(user !== null){
             sessionStorage.setItem("password",user.password);
+            this.displayModal("mot de passe");
           }
         },
         (error : HttpErrorResponse) => {
@@ -98,6 +102,7 @@ export class ProfileComponent implements OnInit {
           if(user !== null){
             sessionStorage.setItem("name",user.name);
             $('#nameProfile').val(user.name);
+            this.displayModal("nom");
           }else{
             alert("Erreur dans le changement de nom !");
           }
@@ -110,7 +115,7 @@ export class ProfileComponent implements OnInit {
   }
 
   updateFirstName(){
-    if(!this.name.match("^[-'a-zA-ZÀ-ÖØ-öø-ſ]+$")){
+    if(!this.firstName.match("^[-'a-zA-ZÀ-ÖØ-öø-ſ]+$")){
       alert("Le prénom ne correspond pas à un vrai nom !");
       return;
     }
@@ -124,6 +129,7 @@ export class ProfileComponent implements OnInit {
           if(user !== null){
             sessionStorage.setItem("firstName",user.firstName);
             $("#firstNameProfile").val(user.firstName);
+            this.displayModal("prénom");
           }else{
             alert("Erreur dans le changement de prénom !");
           }
@@ -131,6 +137,11 @@ export class ProfileComponent implements OnInit {
         (error : HttpErrorResponse) => {
           alert("Erreur dans le changement de prénom !");
         });
+  }
+
+  displayModal(type){
+    this.type = type;
+    $('#success').modal('show');
   }
 
 }

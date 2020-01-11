@@ -52,7 +52,7 @@ public class UserController {
     @PutMapping
     @RequestMapping("updateFirstName")
     public User updateFirstName(@RequestParam("id") Long id,@RequestParam("firstName") String firstName){
-        return userManager.updateName(id,firstName);
+        return userManager.updateFirstName(id,firstName);
     }
 
     @PutMapping
