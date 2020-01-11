@@ -17,6 +17,7 @@ public class UserController {
     IRoleManagement roleManager;
     @Autowired
     IUserManagement userManager;
+
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public Iterable<User> index(@RequestParam(value="name", defaultValue="World") String name, Model model) {
         return userManager.getAllUsers();
@@ -70,7 +71,7 @@ public class UserController {
     @RequestMapping("feed")
     public User addUsers(){
         var role = roleManager.addRole("Admin");
-        userManager.addUser("Romain","boisson","romain.boisson@gmail.com","Roro92!",role);
+        userManager.addUser("Rominou","boisson","rominou.boisson@gmail.com","Roro92!",role);
         userManager.addUser("Reynald","Barbal","reyno.barbal@gmail.com","Reyrey92!",role);
         userManager.addUser("test","Test","test@t.t","Test92!",role );
         return userManager.addUser("tomothée","Guy","timtim@guy.com","Gaygay92",role);
