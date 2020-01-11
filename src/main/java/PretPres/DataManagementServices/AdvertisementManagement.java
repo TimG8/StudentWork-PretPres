@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Optional;
 
 @Service
 public class AdvertisementManagement implements IAdvertisementManagement {
@@ -60,6 +61,10 @@ public class AdvertisementManagement implements IAdvertisementManagement {
 
     @Override
     public void deleteAdvertisement(String uuid) {
-        adRepo.delete(adRepo.findByUuid(uuid));
+        Advertisement ad = adRepo.findByUuid(uuid);
+
+        if (ad != null) {
+            adRepo.delete(ad);
+        }
     }
 }

@@ -18,6 +18,7 @@
     </div>
     <div *ngIf="isUserLoggedIn()">
       <p class="navbar-brand">Bienvenue {{user.firstName}} {{user.name}} !</p>
+      <a routerLink="/new-advertisement" type="button" class="d-inline btn btn-primary">Nouvelle annonce</a>
       <a routerLink="/profile" type="button" class="d-inline btn btn-primary">Mon profil</a>
       <app-logout></app-logout>
     </div>

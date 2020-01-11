@@ -1,7 +1,6 @@
 package PretPres.Controllers;
 
 import PretPres.DataManagementServices.IRoleManagement;
-import PretPres.Models.Role;
 import PretPres.Models.User;
 import PretPres.DataManagementServices.IUserManagement;
 

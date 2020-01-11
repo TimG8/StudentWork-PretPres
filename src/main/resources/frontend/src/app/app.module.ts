@@ -11,6 +11,7 @@ import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NewAdvertisementComponent } from './new-advertisement/new-advertisement.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProfileComponent } from './profile/profile.component';
     LoginComponent,
     RegisterComponent,
     LogoutComponent,
-    ProfileComponent
+    ProfileComponent,
+    NewAdvertisementComponent
   ],
   imports: [
     BrowserModule,

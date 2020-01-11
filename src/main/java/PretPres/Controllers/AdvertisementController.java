@@ -53,6 +53,11 @@ public class AdvertisementController {
 
     @RequestMapping("feed")
     public Advertisement addAdvertisements() {
+        deleteAdvertisement("FEED-0");
+        deleteAdvertisement("FEED-1");
+        deleteAdvertisement("FEED-2");
+        deleteAdvertisement("FEED-3");
+
         Advertisement ad = new Advertisement("Potion d'intelligence", "Château de Kaamelott", "Je vends cette potion car elle rend stupide au lieu de rendre intelligent", 458);
         ad.setUuid("FEED-0");
         adManager.addFull(ad);

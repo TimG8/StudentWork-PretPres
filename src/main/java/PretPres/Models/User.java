@@ -1,7 +1,5 @@
 package PretPres.Models;
 
-import org.springframework.beans.factory.annotation.Required;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Date;
