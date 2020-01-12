@@ -26,8 +26,6 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    $('#success').modal('hide');
-    $(".wrong").css("display","none");
     this.user = new User();
     this.user.getSessionItems();
   }
@@ -161,7 +159,10 @@ export class ProfileComponent implements OnInit {
 
   displayModal(type){
     this.type = type;
-    $('#success').modal('show');
+    $("#successProfile").fadeIn();
+    setTimeout(function () {
+      $("#successProfile").fadeOut();
+    }, 5000);
   }
 
   reset(){

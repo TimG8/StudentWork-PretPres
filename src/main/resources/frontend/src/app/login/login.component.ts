@@ -27,6 +27,12 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.loginService.authenticate(this.mail, this.password);
+    this.reset();
+  }
+
+  reset(){
+    this.mail="";
+    this.password="";
   }
 
 }
