@@ -67,4 +67,14 @@ public class AdvertisementManagement implements IAdvertisementManagement {
             adRepo.delete(ad);
         }
     }
+
+    @Override
+    public void validateAdvertisement(String uuid) {
+        Advertisement ad = adRepo.findByUuid(uuid);
+
+        if (ad != null) {
+            ad.setValidated(true);
+            adRepo.save(ad);
+        }
+    }
 }

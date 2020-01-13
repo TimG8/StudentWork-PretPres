@@ -32,6 +32,13 @@ public class AdvertisementController {
         return adManager.updateAdvertisement(ad);
     }
 
+    @PutMapping
+    @RequestMapping("validate")
+    public String validateAdvertisement(@RequestParam String uuid) {
+        adManager.validateAdvertisement(uuid);
+        return "Validated advertisement with uuid : " + uuid;
+    }
+
     @DeleteMapping
     @RequestMapping("delete")
     public String deleteAdvertisement(@RequestParam("uuid") String uuid) {

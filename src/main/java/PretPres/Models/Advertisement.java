@@ -16,6 +16,7 @@ public class Advertisement {
     private String address;
     private String description;
     private float price;
+    private boolean validated;
     private String uuid;
 
     // TODO : link image service
@@ -27,6 +28,7 @@ public class Advertisement {
         this.address = address;
         this.description = description;
         this.price = price;
+        this.validated = false;
         this.uuid = UUID.randomUUID().toString();
     }
 
@@ -76,5 +78,13 @@ public class Advertisement {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public boolean isValidated() {
+        return validated;
+    }
+
+    public void setValidated(boolean validated) {
+        this.validated = validated;
     }
 }

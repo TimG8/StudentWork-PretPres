@@ -12,4 +12,5 @@ public interface IAdvertisementManagement {
     Advertisement addFull(Advertisement ad);
     Advertisement updateAdvertisement(Advertisement advertisement);
     void deleteAdvertisement(String uuid);
+    void validateAdvertisement(String uuid);
 }
