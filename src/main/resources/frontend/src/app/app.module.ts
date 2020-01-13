@@ -12,6 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewAdvertisementComponent } from './new-advertisement/new-advertisement.component';
+import { MyAdvertisementComponent } from './my-advertisement/my-advertisement.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { NewAdvertisementComponent } from './new-advertisement/new-advertisement
     RegisterComponent,
     LogoutComponent,
     ProfileComponent,
-    NewAdvertisementComponent
+    NewAdvertisementComponent,
+    MyAdvertisementComponent
   ],
   imports: [
     BrowserModule,

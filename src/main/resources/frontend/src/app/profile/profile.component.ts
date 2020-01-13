@@ -8,6 +8,7 @@ declare var $: any;
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
+
 export class ProfileComponent implements OnInit {
   baseUrl = 'http://localhost:8080/user';
 

@@ -7,19 +7,16 @@ import { User } from '../model/model.user';
 import { AdvertisementService } from '../service/advertisement.service'
 
 @Component({
-  selector: 'app-new-advertisement',
-  templateUrl: './new-advertisement.component.html',
-  styleUrls: ['./new-advertisement.component.css']
+  selector: 'app-my-advertisement',
+  templateUrl: './my-advertisement.component.html',
+  styleUrls: ['./my-advertisement.component.css']
 })
 
-export class NewAdvertisementComponent implements OnInit {
+export class MyAdvertisementComponent implements OnInit {
   baseUrl = 'http://localhost:8080/advertisement';
 
+  ads : Advertisement[];
   user : User;
-  title : "";
-  address : "";
-  description : "";
-  price : "";
 
   constructor(
     private router: Router,
@@ -29,16 +26,9 @@ export class NewAdvertisementComponent implements OnInit {
   ngOnInit() {
     this.user = new User();
     this.user.getSessionItems();
-  }
 
-  createAdvertisement() {
-    this.advertisementService.createAdvertisement(this.title, this.address, this.description, this.price, this.user)
-      .subscribe((ad : Advertisement) => {
-        (error : HttpErrorResponse) => {
-          console.log(error);
-        }
-      });
-
-    setTimeout( () => { this.router.navigate(['/my-advertisement']); }, 500);
+    this.advertisementService.findByUserId(this.user).subscribe(data => {
+      this.ads = data;
+    });
   }
 }

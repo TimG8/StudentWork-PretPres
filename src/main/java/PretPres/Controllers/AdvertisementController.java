@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @RestController
 @RequestMapping("/advertisement")
@@ -22,8 +23,12 @@ public class AdvertisementController {
 
     @PostMapping
     @RequestMapping("create")
-    public Advertisement create(@RequestParam("title") String title, @RequestParam("address") String address, @RequestParam("description") String description, @RequestParam("price") float price) {
-        return adManager.add(title, address, description, price);
+    public Advertisement create(@RequestParam("title") String title,
+                                @RequestParam("address") String address,
+                                @RequestParam("description") String description,
+                                @RequestParam("price") float price,
+                                @RequestParam("user_id") long user_id) {
+        return adManager.add(title, address, description, price, user_id);
     }
 
     @PutMapping
@@ -46,16 +51,22 @@ public class AdvertisementController {
         return "Deleted advertisement with uuid : " + uuid;
     }
 
-    @GetMapping
+    @PostMapping
     @RequestMapping("searchByTitle")
     public Collection<Advertisement> searchByTitle(@RequestParam("title") String title) {
         return adManager.getAdvertisementsByTitle(title);
     }
 
-    @GetMapping
+    @PostMapping
     @RequestMapping("searchByPrice")
     public Collection<Advertisement> searchByPrice(@RequestParam("price") float price) {
         return adManager.getAdvertisementsByPrice(price);
+    }
+
+    @PostMapping
+    @RequestMapping("adsOfUser")
+    public List<Advertisement> adsOfUser(@RequestParam("user_id") long user_id) {
+        return adManager.getAdvertisementsByUserId(user_id);
     }
 
     @RequestMapping("feed")

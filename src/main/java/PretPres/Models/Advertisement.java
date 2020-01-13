@@ -1,9 +1,8 @@
 package PretPres.Models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import java.util.UUID;
 
 @Entity
@@ -18,6 +17,11 @@ public class Advertisement {
     private float price;
     private boolean validated;
     private String uuid;
+
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private User user;
 
     // TODO : link image service
 
@@ -86,5 +90,13 @@ public class Advertisement {
 
     public void setValidated(boolean validated) {
         this.validated = validated;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -1,7 +1,6 @@
 package PretPres.Models;
 
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Date;
 
 @Entity
@@ -19,12 +18,8 @@ public class User {
     private Date date;
     private String address;
 
-
     @ManyToOne
     private Role role;
-
-    @OneToMany
-    private Collection<Advertisement> postedAds;
 
     public User() {}
 
@@ -109,14 +104,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Collection<Advertisement> getPostedAds() {
-        return postedAds;
-    }
-
-    public void setPostedAds(Collection<Advertisement> ads) {
-        this.postedAds = ads;
     }
 
     public Role getRole() {

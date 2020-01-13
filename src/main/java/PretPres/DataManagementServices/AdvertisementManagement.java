@@ -1,11 +1,14 @@
 package PretPres.DataManagementServices;
 
 import PretPres.Models.Advertisement;
+import PretPres.Models.User;
 import PretPres.Repositories.AdvertisementRepository;
+import PretPres.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,6 +16,9 @@ public class AdvertisementManagement implements IAdvertisementManagement {
 
     @Autowired
     AdvertisementRepository adRepo;
+
+    @Autowired
+    UserRepository userRepo;
 
     public AdvertisementManagement() {}
 
@@ -32,8 +38,21 @@ public class AdvertisementManagement implements IAdvertisementManagement {
     }
 
     @Override
-    public Advertisement add(String title, String address, String description, float price) {
+    public List<Advertisement> getAdvertisementsByUserId(long user_id) {
+        return adRepo.findByUserId(user_id);
+    }
+
+    @Override
+    public Advertisement add(String title, String address, String description, float price, long user_id) {
+        Optional<User> user = userRepo.findById(user_id);
+
+        if (user.isEmpty()) {
+            return null;
+        }
+
         Advertisement ad = new Advertisement(title, address, description, price);
+        ad.setUser(user.get());
+
         return adRepo.save(ad);
     }
 
