@@ -34,8 +34,17 @@ export class NewAdvertisementComponent implements OnInit {
     this.ad.description = this.description;
     this.ad.price = this.price;
 
+    /* Corrections 
+    let params = new HttpParams()
+      .set("title", this.title)
+      .set("price", this.price)
+      .set("description", this.description)
+      .set("address",this.address);
+    this.httpClient.post<Advertisement>(request, params)*/
+
     this.httpClient.post<Advertisement>(request, this.ad)
       .subscribe((ad : Advertisement) => {
+
         (error : HttpErrorResponse) => {
           console.log(error);
         }
