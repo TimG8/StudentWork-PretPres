@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/")
 public class HomeController {
 
-
     @RequestMapping("")
     public User home(@RequestParam(value="name", defaultValue="World") String name, Model model) {
         var user = new User();
