@@ -8,8 +8,8 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Annonces</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Contacts</a>
+      <li class="nav-item active" *ngIf="this.isAdmin()">
+        <a class="nav-link" routerLink="users">Utilisateurs</a>
       </li>
     </ul>
     <div *ngIf="!isUserLoggedIn()">
@@ -17,16 +17,16 @@
       <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#register">S'inscrire</button>
     </div>
     <div *ngIf="isUserLoggedIn()">
-      <p class="navbar-brand">Bienvenue {{user.firstName}} {{user.name}} !</p>
-      <a routerLink="/my-advertisement" type="button" class="d-inline btn btn-primary">Mes annonces</a>
-      <a routerLink="/new-advertisement" type="button" class="d-inline btn btn-primary">Nouvelle annonce</a>
-      <a routerLink="/profile" type="button" class="d-inline btn btn-primary">Mon profil</a>
+      <p class="navbar-brand">Bienvenue {{this.user.firstName}} {{this.user.name}} !</p>
+      <span *ngIf="!this.isAdmin()">
+        <a routerLink="/my-advertisement" type="button" class="d-inline btn btn-primary">Mes annonces</a>
+        <a routerLink="/new-advertisement" type="button" class="d-inline btn btn-primary">Nouvelle annonce</a>
+        <a routerLink="/profile" type="button" class="d-inline btn btn-primary">Mon profil</a>
+      </span>
       <app-logout></app-logout>
     </div>
   </div>
 </nav>
-<app-login></app-login>
-<app-register></app-register>
 
 
 

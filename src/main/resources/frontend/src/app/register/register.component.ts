@@ -49,15 +49,15 @@ export class RegisterComponent implements OnInit {
       register = false;
     }
 
-    if(register){
+    if(register) {
       this.user.password = this.password;
       this.user.mail = this.mail;
       this.user.firstName = this.firstname;
       this.user.name = this.name;
-    }else{
-      return;
+      this.user.role.name = "User";
+      console.log(this.user);
+      this.service.register(this.user);
     }
-    this.service.register(this.user);
   }
 
 

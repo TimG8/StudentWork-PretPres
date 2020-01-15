@@ -13,6 +13,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { NewAdvertisementComponent } from './new-advertisement/new-advertisement.component';
 import { MyAdvertisementComponent } from './my-advertisement/my-advertisement.component';
+import { UsersComponent } from './users/users.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MyAdvertisementComponent } from './my-advertisement/my-advertisement.co
     LogoutComponent,
     ProfileComponent,
     NewAdvertisementComponent,
-    MyAdvertisementComponent
+    MyAdvertisementComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
