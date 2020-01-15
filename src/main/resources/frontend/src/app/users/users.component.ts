@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {UsersService} from "./users.service";
+import {User} from "../model/model.user";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-users',
@@ -6,10 +9,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent implements OnInit {
+  users : User[];
 
-  constructor() { }
+  constructor(
+    private usersService:UsersService
+  ) { }
 
   ngOnInit() {
+    this.usersService.getUsers().subscribe((users : User[]) => {
+      this.users = users;
+    }, (error : HttpErrorResponse) => {
+      console.log(error);
+    });
+
+  }
+
+  delete(id){
+    this.usersService.deleteUser(id).subscribe((users : User[]) => {
+      this.users = users;
+    }, (error : HttpErrorResponse) => {
+      console.log(error);
+    });
+
+  }
+
+  userIsAdmin(user : User){
+    return user.role.name == "Admin";
   }
 
 }

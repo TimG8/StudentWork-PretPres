@@ -7,6 +7,7 @@ export class User {
    phoneNumber = "";
    firstName = "";
    name = "";
+   adress="";
    role : Role;
 
    constructor() {
@@ -20,6 +21,7 @@ export class User {
     this.mail = sessionStorage.getItem("mail");
     this.password = sessionStorage.getItem("password");
     this.phoneNumber = sessionStorage.getItem("phone");
+    this.adress = sessionStorage.getItem("adress");
     this.role.name = sessionStorage.getItem("role");
   }
 

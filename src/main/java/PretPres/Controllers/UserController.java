@@ -81,9 +81,10 @@ public class UserController {
         return userManager.addUser("tomothée","Guy","timtim@guy.com","Gaygay92",role);
     }
 
-    @DeleteMapping
+    @PostMapping
     @RequestMapping("delete")
-    public void deleteUser(@RequestParam("id") Long id){
+    public Iterable<User> deleteUser(@RequestParam("id") Long id){
         userManager.deleteUser(id);
+        return userManager.getAllUsers();
     }
 }
