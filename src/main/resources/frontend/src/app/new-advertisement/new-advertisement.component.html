@@ -13,11 +13,11 @@
         </div>
         <div class="form-group row">
           <label for="description" class="col-sm-5 col-form-label">Description</label>
-          <input type="text" name="description" required="required" class="form-control col-sm-5" id="description"  [(ngModel)]="description">
+          <textarea name="description" required="required" class="form-control col-sm-5" id="description"  [(ngModel)]="description"></textarea>
         </div>
         <div class="form-group row">
           <label for="price" class="col-sm-5 col-form-label">Prix</label>
-          <input type="number" name="price" required="required" class="form-control col-sm-5" id="price"  [(ngModel)]="price">
+          <input type="number" step="any" min="0" name="price" required="required" class="form-control col-sm-5" id="price" [(ngModel)]="price">
         </div>
         <button type="submit" class="btn btn-primary mb-2">Poster l'annonce</button>
       </form>
