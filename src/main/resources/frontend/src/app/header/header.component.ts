@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../model/model.user";
+import {delay} from "rxjs/operators";
 declare var $: any;
 
 @Component({
@@ -19,14 +20,17 @@ export class HeaderComponent implements OnInit {
   isUserLoggedIn() {
     let user = sessionStorage.getItem('id');
     if(user != null){
-      this.user.name = sessionStorage.getItem("name");
-      this.user.firstName = sessionStorage.getItem("firstName");
+      this.user.getSessionItems();
       $('#signin').modal('hide');
       $('#register').modal('hide');
     }
     return !(user === null);
   }
 
+  isAdmin(){
+    this.user.getSessionItems();
+    return this.user.isAdmin();
+  }
 
 
 }

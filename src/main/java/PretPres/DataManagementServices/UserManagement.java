@@ -30,7 +30,10 @@ public class UserManagement implements IUserManagement {
 
     @Override
     public User getUser(String mail) {
-        return userRepo.findByMail(mail).iterator().next();
+        if(userRepo.findByMail(mail).iterator().hasNext()){
+            return userRepo.findByMail(mail).iterator().next();
+        }
+        return null;
     }
 
     @Override

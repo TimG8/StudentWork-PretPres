@@ -9,14 +9,9 @@ export class User {
    name = "";
    role : Role;
 
-  public setSessionItems(){
-    sessionStorage.setItem("id",this.id);
-    sessionStorage.setItem("name",this.name);
-    sessionStorage.setItem("firstName",this.firstName);
-    sessionStorage.setItem("mail",this.mail);
-    sessionStorage.setItem("password",this.password);
-    sessionStorage.setItem("phone",this.phoneNumber);
-  }
+   constructor() {
+     this.role = new Role();
+   }
 
   public getSessionItems(){
     this.id = sessionStorage.getItem("id");
@@ -25,5 +20,10 @@ export class User {
     this.mail = sessionStorage.getItem("mail");
     this.password = sessionStorage.getItem("password");
     this.phoneNumber = sessionStorage.getItem("phone");
+    this.role.name = sessionStorage.getItem("role");
+  }
+
+  public isAdmin(){
+    return this.role.name == "Admin";
   }
 }

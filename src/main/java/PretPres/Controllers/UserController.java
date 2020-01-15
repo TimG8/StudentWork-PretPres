@@ -1,6 +1,7 @@
 package PretPres.Controllers;
 
 import PretPres.DataManagementServices.IRoleManagement;
+import PretPres.Models.Role;
 import PretPres.Models.User;
 import PretPres.DataManagementServices.IUserManagement;
 
@@ -29,10 +30,13 @@ public class UserController {
     }
 
     @PostMapping
+    @RequestMapping("register")
     public User create(@RequestBody User user) {
         if(userManager.getUser(user.getMail()) != null){
             return null;
         }
+        Role role = roleManager.getRoleUser();
+        user.setRole(role);
         userManager.add(user);
         return user;
     }
@@ -70,9 +74,10 @@ public class UserController {
     @RequestMapping("feed")
     public User addUsers(){
         var role = roleManager.addRole("Admin");
+        var role2 = roleManager.addRole("User");
         userManager.addUser("Rominou","boisson","rominou.boisson@gmail.com","Roro92!",role);
         userManager.addUser("Reynald","Barbal","reyno.barbal@gmail.com","Reyrey92!",role);
-        userManager.addUser("test","Test","test@t.t","Test92!",role );
+        userManager.addUser("test","Test","test@t.t","Test92!",role2 );
         return userManager.addUser("tomothée","Guy","timtim@guy.com","Gaygay92",role);
     }
 

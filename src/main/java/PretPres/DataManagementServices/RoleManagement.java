@@ -22,4 +22,9 @@ public class RoleManagement implements IRoleManagement {
     public Role getRole(Long id) {
         return roleRepo.findById(id).get();
     }
+
+    @Override
+    public Role getRoleUser() {
+        return roleRepo.findByName("User");
+    }
 }

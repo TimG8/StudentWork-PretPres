@@ -33,7 +33,6 @@ export class AuthentificationService {
       },
       (error : HttpErrorResponse) => {
         console.log(error);
-        alert("Le mail ou le mot de passe est incorrect ! 1");
     });
   }
 
@@ -44,11 +43,18 @@ export class AuthentificationService {
     sessionStorage.setItem("mail",user.mail);
     sessionStorage.setItem("password",user.password);
     sessionStorage.setItem("phone",user.phoneNumber);
+    sessionStorage.setItem("role", user.role.name)
   }
 
   isLoggedIn() {
     let user = sessionStorage.getItem('id');
     return !(user === null)
+  }
+
+  isAdmin(){
+    let user = new User();
+    user.getSessionItems();
+    return user.isAdmin();
   }
 
   logOut() {
@@ -57,15 +63,18 @@ export class AuthentificationService {
   }
 
   register(user : User){
-    let request = this.baseUrl+'/login';
+    let request = this.baseUrl+'/register';
     this.httpClient.post<User>(request,user)
       .subscribe((user : User) => {
-        if(user !== null){
+        if (user !== null) {
           this.setSessionItems(user);
-        }else{
+        } else {
           alert("L'adresse mail est déjà utilisée !");
         }
-    });
+      },
+        (error : HttpErrorResponse) => {
+          console.log(error);
+        });
   }
 
 }
