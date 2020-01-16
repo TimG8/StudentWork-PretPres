@@ -17,12 +17,14 @@ public class Booking {
 
     private Date startingDate;
     private Date endingDate;
+    private Boolean validate;
 
     public Booking(User u, Advertisement ad,  Date startDate, Date endDate){
         this.adv = ad;
         this.user = u;
         this.startingDate = startDate;
         this.endingDate = endDate;
+        this.validate = false;
     }
 
     public long getId() {
@@ -63,5 +65,13 @@ public class Booking {
 
     public void setEndingDate(Date endingDate) {
         this.endingDate = endingDate;
+    }
+
+    public Boolean getValidate() {
+        return validate;
+    }
+
+    public void setValidate(Boolean validate) {
+        this.validate = validate;
     }
 }

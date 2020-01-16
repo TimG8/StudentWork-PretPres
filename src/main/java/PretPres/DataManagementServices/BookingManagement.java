@@ -14,6 +14,7 @@ public class BookingManagement implements IBookingManagement {
 
     public BookingManagement(){ }
 
+    @Override
     public Booking addBooking(User user, Advertisement adv, Date startDate, Date startEnd){
         return bookRepo.save(new Booking(user, adv, startDate, startEnd));
     }
