@@ -1,15 +1,15 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a routerLink="/" class="navbar-brand"><img src="assets/img/logo.png" height="75px"/></a>
+  <a routerLink="/home" class="navbar-brand"><img src="assets/img/logo.png" height="75px"/></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Annonces</a>
+        <a class="nav-link" routerLink="/all-advertisements">Annonces</a>
       </li>
       <li class="nav-item active" *ngIf="this.isAdmin()">
-        <a class="nav-link" routerLink="users">Utilisateurs</a>
+        <a class="nav-link" routerLink="/users">Utilisateurs</a>
       </li>
     </ul>
     <div *ngIf="!isUserLoggedIn()">
@@ -18,11 +18,11 @@
     </div>
     <div *ngIf="isUserLoggedIn()">
       <p class="navbar-brand">Bienvenue {{this.user.firstName}} {{this.user.name}} !</p>
-      <span *ngIf="!this.isAdmin()">
+      <!-- <span *ngIf="!isAdmin()"> -->
         <a routerLink="/my-advertisement" type="button" class="d-inline btn btn-primary">Mes annonces</a>
         <a routerLink="/new-advertisement" type="button" class="d-inline btn btn-primary">Nouvelle annonce</a>
         <a routerLink="/profile" type="button" class="d-inline btn btn-primary">Mon profil</a>
-      </span>
+      <!-- </span> -->
       <app-logout></app-logout>
     </div>
   </div>

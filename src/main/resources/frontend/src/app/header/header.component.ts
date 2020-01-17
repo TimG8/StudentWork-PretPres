@@ -31,6 +31,4 @@ export class HeaderComponent implements OnInit {
     this.user.getSessionItems();
     return this.user.isAdmin();
   }
-
-
 }
