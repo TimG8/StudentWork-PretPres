@@ -11,11 +11,11 @@ import { HomeComponent } from "./home/home.component";
 import { AllAdvertisementsComponent } from "./all-advertisements/all-advertisements.component";
 
 const routes: Routes = [
+  { path:'', component:HomeComponent },
   { path:'profile', component:ProfileComponent, canActivate:[AuthGardService] },
   { path:'users', component:UsersComponent, canActivate:[RoleGuardService] },
   { path:'new-advertisement', component:NewAdvertisementComponent },
   { path:'my-advertisement', component:MyAdvertisementComponent },
-  { path:'home', component:HomeComponent },
   { path:'all-advertisements', component:AllAdvertisementsComponent }
 ];
 
