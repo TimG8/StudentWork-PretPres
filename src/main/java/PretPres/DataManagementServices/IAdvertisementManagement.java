@@ -2,6 +2,7 @@ package PretPres.DataManagementServices;
 
 import PretPres.Models.Advertisement;
 
+import java.sql.Blob;
 import java.util.List;
 
 public interface IAdvertisementManagement {
@@ -10,7 +11,7 @@ public interface IAdvertisementManagement {
     List<Advertisement> getAdvertisementsByPrice(float price);
     List<Advertisement> getAdvertisementsByUserId(long user_id);
     List<Advertisement> getAdvertisementByValidation(boolean validated);
-    Advertisement add(String title, String address, String description, float price, long user_id);
+    Advertisement add(String title, String address, String description, float price, long user_id, Blob pic);
     Advertisement addFull(Advertisement ad);
     Advertisement updateAdvertisement(Advertisement advertisement);
     void deleteAdvertisement(String uuid);

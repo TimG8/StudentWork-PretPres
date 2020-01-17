@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Blob;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,8 +28,9 @@ public class AdvertisementController {
                                 @RequestParam("address") String address,
                                 @RequestParam("description") String description,
                                 @RequestParam("price") float price,
-                                @RequestParam("user_id") long user_id) {
-        return adManager.add(title, address, description, price, user_id);
+                                @RequestParam("user_id") long user_id,
+                                @RequestParam("picture")Blob pic) {
+        return adManager.add(title, address, description, price, user_id, pic);
     }
 
     @PutMapping
@@ -88,19 +90,19 @@ public class AdvertisementController {
         deleteAdvertisement("FEED-2");
         deleteAdvertisement("FEED-3");
 
-        Advertisement ad = new Advertisement("Potion d'intelligence", "Château de Kaamelott", "Je vends cette potion car elle rend stupide au lieu de rendre intelligent", 458);
+        Advertisement ad = new Advertisement("Potion d'intelligence", "Château de Kaamelott", "Je vends cette potion car elle rend stupide au lieu de rendre intelligent", 458, null );
         ad.setUuid("FEED-0");
         adManager.addFull(ad);
 
-        ad = new Advertisement("Tuyau d'arrosage", "Olli, Échangeur, Tarkov", "Utile pour faire un récupérateur d'eau", 20000);
+        ad = new Advertisement("Tuyau d'arrosage", "Olli, Échangeur, Tarkov", "Utile pour faire un récupérateur d'eau", 20000, null);
         ad.setUuid("FEED-1");
         adManager.addFull(ad);
 
-        ad = new Advertisement("Fromage pourri", "14 rue du Moisi", "Pour éloigner vos voisins encombrants", 12);
+        ad = new Advertisement("Fromage pourri", "14 rue du Moisi", "Pour éloigner vos voisins encombrants", 12, null);
         ad.setUuid("FEED-2");
         adManager.addFull(ad);
 
-        ad = new Advertisement("Toblerone", "Suisse", "Une drogue efficace et plaisante", 10);
+        ad = new Advertisement("Toblerone", "Suisse", "Une drogue efficace et plaisante", 10,null);
         ad.setUuid("FEED-3");
         adManager.addFull(ad);
 

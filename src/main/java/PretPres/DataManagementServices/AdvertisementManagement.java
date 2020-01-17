@@ -7,6 +7,7 @@ import PretPres.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,14 +52,14 @@ public class AdvertisementManagement implements IAdvertisementManagement {
     }
 
     @Override
-    public Advertisement add(String title, String address, String description, float price, long user_id) {
+    public Advertisement add(String title, String address, String description, float price, long user_id, Blob pic) {
         Optional<User> user = userRepo.findById(user_id);
 
         if (user.isEmpty()) {
             return null;
         }
 
-        Advertisement ad = new Advertisement(title, address, description, price);
+        Advertisement ad = new Advertisement(title, address, description, price, pic);
         ad.setUser(user.get());
 
         return adRepo.save(ad);

@@ -3,6 +3,7 @@ package PretPres.Models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.UUID;
 
 @Entity
@@ -24,16 +25,20 @@ public class Advertisement {
     private User user;
 
     // TODO : link image service
+    @Lob
+    private Blob picture;
+
 
     public Advertisement() {}
 
-    public Advertisement(String title, String address, String description, float price) {
+    public Advertisement(String title, String address, String description, float price, Blob pic ) {
         this.title = title;
         this.address = address;
         this.description = description;
         this.price = price;
         this.validated = false;
         this.uuid = UUID.randomUUID().toString();
+        this.picture = pic;
     }
 
     public long getId() {
@@ -98,5 +103,13 @@ public class Advertisement {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Blob getPic() {
+        return picture;
+    }
+
+    public void setPic(Blob pic) {
+        this.picture = pic;
     }
 }
