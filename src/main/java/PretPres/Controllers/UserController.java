@@ -19,7 +19,7 @@ public class UserController {
     IUserManagement userManager;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
-    public Iterable<User> index(@RequestParam(value="name", defaultValue="World") String name, Model model) {
+    public Iterable<User> index() {
         return userManager.getAllUsers();
     }
 
