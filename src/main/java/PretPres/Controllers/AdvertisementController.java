@@ -69,8 +69,20 @@ public class AdvertisementController {
         return adManager.getAdvertisementsByUserId(user_id);
     }
 
+    @GetMapping
+    @RequestMapping("validatedAdvertisements")
+    public List<Advertisement> validatedAdvertisements() {
+        return adManager.getAdvertisementByValidation(true);
+    }
+
+    @GetMapping
+    @RequestMapping("notValidatedAdvertisements")
+    public List<Advertisement> notValidatedAdvertisements() {
+        return adManager.getAdvertisementByValidation(false);
+    }
+
     @RequestMapping("feed")
-    public Advertisement addAdvertisements() {
+    public Advertisement feedAdvertisements() {
         deleteAdvertisement("FEED-0");
         deleteAdvertisement("FEED-1");
         deleteAdvertisement("FEED-2");
@@ -88,7 +100,7 @@ public class AdvertisementController {
         ad.setUuid("FEED-2");
         adManager.addFull(ad);
 
-        ad = new Advertisement("Toblerone", "Suisse", "Une drogue efficace et plaisante", 6);
+        ad = new Advertisement("Toblerone", "Suisse", "Une drogue efficace et plaisante", 10);
         ad.setUuid("FEED-3");
         adManager.addFull(ad);
 

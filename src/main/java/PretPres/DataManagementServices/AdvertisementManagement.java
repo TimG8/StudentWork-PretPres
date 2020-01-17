@@ -7,7 +7,6 @@ import PretPres.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,18 +27,27 @@ public class AdvertisementManagement implements IAdvertisementManagement {
     }
 
     @Override
-    public Collection<Advertisement> getAdvertisementsByTitle(String title) {
+    public List<Advertisement> getAdvertisementsByTitle(String title) {
         return adRepo.findByTitleContaining(title);
     }
 
     @Override
-    public Collection<Advertisement> getAdvertisementsByPrice(float price) {
+    public List<Advertisement> getAdvertisementsByPrice(float price) {
         return adRepo.findByPrice(price);
     }
 
     @Override
     public List<Advertisement> getAdvertisementsByUserId(long user_id) {
         return adRepo.findByUserId(user_id);
+    }
+
+    @Override
+    public List<Advertisement> getAdvertisementByValidation(boolean validated) {
+        if (validated) {
+            return adRepo.findByValidatedTrue();
+        }
+
+        return adRepo.findByValidatedFalse();
     }
 
     @Override
