@@ -36,7 +36,7 @@ public class AdvertisementController {
                                 @RequestParam("description") String description,
                                 @RequestParam("price") float price,
                                 @RequestParam("user_id") long user_id,
-                                @RequestParam("picture") MultipartFile pic) {
+                                @RequestPart("picture") MultipartFile pic) {
         return adManager.add(title, address, description, price, user_id, pic);
     }
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { Advertisement } from '../model/model.advertisement';
 import { User } from '../model/model.user';
@@ -24,17 +24,20 @@ export class AdvertisementService {
     return this.http.post<Advertisement[]>(request, params);
   }
 
-  public createAdvertisement(title : string, address : string, description : string, price : string, user : User) {
+  public createAdvertisement(title : string, address : string, description : string, price : string, user : User, file : File) {
     let request = this.baseUrl + '/create'
 
-    let params = new HttpParams()
-      .set("title", title)
-      .set("price", price)
-      .set("description", description)
-      .set("address", address)
-      .set("user_id", user.id)
-      .set("picture", null);
+    const formData = new FormData();
 
-    return this.http.post<Advertisement>(request, params);
+    formData.append("title", title)
+    formData.append("price", price)
+    formData.append("description", description)
+    formData.append("address", address)
+    formData.append("user_id", user.id)
+    formData.append("picture", file);
+
+    console.log('scope is ' + file);
+
+    return this.http.post<Advertisement>(request, formData);
   }
 }

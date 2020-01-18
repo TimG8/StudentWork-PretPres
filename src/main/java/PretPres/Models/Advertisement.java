@@ -1,6 +1,8 @@
 package PretPres.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.OnDelete;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import javax.persistence.*;
 import java.sql.Blob;
@@ -25,20 +27,18 @@ public class Advertisement {
     private User user;
 
     // TODO : link image service
-    @Lob
-    private Blob picture;
-
+    @OneToOne(cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private Picture picture;
 
     public Advertisement() {}
 
-    public Advertisement(String title, String address, String description, float price, Blob pic ) {
+    public Advertisement(String title, String address, String description, float price) {
         this.title = title;
         this.address = address;
         this.description = description;
         this.price = price;
         this.validated = false;
         this.uuid = UUID.randomUUID().toString();
-        this.picture = pic;
     }
 
     public long getId() {
@@ -105,11 +105,11 @@ public class Advertisement {
         this.user = user;
     }
 
-    public Blob getPic() {
+    public Picture getPic() {
         return picture;
     }
 
-    public void setPic(Blob pic) {
+    public void setPic(Picture pic) {
         this.picture = pic;
     }
 }

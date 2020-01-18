@@ -1,12 +1,16 @@
 package PretPres.DataManagementServices;
 
 import PretPres.Models.Advertisement;
+import PretPres.Models.Picture;
 import PretPres.Models.User;
 import PretPres.Repositories.AdvertisementRepository;
+import PretPres.Repositories.PictureRepository;
 import PretPres.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.sql.Blob;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +23,9 @@ public class AdvertisementManagement implements IAdvertisementManagement {
 
     @Autowired
     UserRepository userRepo;
+
+    @Autowired
+    PictureRepository pictureRepo;
 
     public AdvertisementManagement() {}
 
@@ -52,15 +59,25 @@ public class AdvertisementManagement implements IAdvertisementManagement {
     }
 
     @Override
-    public Advertisement add(String title, String address, String description, float price, long user_id, Blob pic) {
+    public Advertisement add(String title, String address, String description, float price, long user_id, MultipartFile pic) {
         Optional<User> user = userRepo.findById(user_id);
 
         if (user.isEmpty()) {
             return null;
         }
 
-        Advertisement ad = new Advertisement(title, address, description, price, pic);
+        Advertisement ad = new Advertisement(title, address, description, price);
         ad.setUser(user.get());
+
+        Picture image;
+        try{
+           image = new Picture(ad.getUuid(),pic);
+           pictureRepo.save(image);
+           ad.setPic(image);
+        }catch(IOException e){
+            System.out.println(e);
+            return null;
+        }
 
         return adRepo.save(ad);
     }

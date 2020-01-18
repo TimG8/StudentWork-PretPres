@@ -20,6 +20,7 @@ export class NewAdvertisementComponent implements OnInit {
   address : "";
   description : "";
   price : "";
+  picture : File;
 
   constructor(
     private router: Router,
@@ -32,7 +33,7 @@ export class NewAdvertisementComponent implements OnInit {
   }
 
   createAdvertisement() {
-    this.advertisementService.createAdvertisement(this.title, this.address, this.description, this.price, this.user)
+    this.advertisementService.createAdvertisement(this.title, this.address, this.description, this.price, this.user, this.picture)
       .subscribe((ad : Advertisement) => {
         (error : HttpErrorResponse) => {
           console.log(error);
@@ -41,4 +42,8 @@ export class NewAdvertisementComponent implements OnInit {
 
     setTimeout( () => { this.router.navigate(['/my-advertisement']); }, 500);
   }
+  processFile(imageInput){
+      this.picture = event.target.files[0]
+  }
+
 }
