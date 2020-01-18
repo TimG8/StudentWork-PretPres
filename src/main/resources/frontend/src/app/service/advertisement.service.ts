@@ -32,7 +32,8 @@ export class AdvertisementService {
       .set("price", price)
       .set("description", description)
       .set("address", address)
-      .set("user_id", user.id);
+      .set("user_id", user.id)
+      .set("picture", null);
 
     return this.http.post<Advertisement>(request, params);
   }

@@ -4,4 +4,6 @@ export class Advertisement {
   address = "";
   description = "";
   price = "";
+  uuid = "";
+  validated: boolean;
 }
