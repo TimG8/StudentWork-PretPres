@@ -1,10 +1,13 @@
 package PretPres.Controllers;
 
 import PretPres.DataManagementServices.IAdvertisementManagement;
+import PretPres.DataManagementServices.IUserManagement;
 import PretPres.Models.Advertisement;
+import PretPres.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Blob;
 import java.util.Collection;
@@ -16,6 +19,10 @@ public class AdvertisementController {
 
     @Autowired
     IAdvertisementManagement adManager;
+
+    @Autowired
+    IUserManagement userManager;
+
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public Iterable<Advertisement> index(Model model) {
@@ -29,7 +36,7 @@ public class AdvertisementController {
                                 @RequestParam("description") String description,
                                 @RequestParam("price") float price,
                                 @RequestParam("user_id") long user_id,
-                                @RequestParam("picture")Blob pic) {
+                                @RequestParam("picture") MultipartFile pic) {
         return adManager.add(title, address, description, price, user_id, pic);
     }
 
@@ -90,19 +97,25 @@ public class AdvertisementController {
         deleteAdvertisement("FEED-2");
         deleteAdvertisement("FEED-3");
 
-        Advertisement ad = new Advertisement("Potion d'intelligence", "Château de Kaamelott", "Je vends cette potion car elle rend stupide au lieu de rendre intelligent", 458, null );
+        User user = userManager.getAllUsers().iterator().next();
+        Advertisement ad = new Advertisement("Potion d'intelligence", "Château de Kaamelott", "Je vends cette potion car elle rend stupide au lieu de rendre intelligent", 458);
+
+        ad.setUser(user);
         ad.setUuid("FEED-0");
         adManager.addFull(ad);
 
-        ad = new Advertisement("Tuyau d'arrosage", "Olli, Échangeur, Tarkov", "Utile pour faire un récupérateur d'eau", 20000, null);
+        ad = new Advertisement("Tuyau d'arrosage", "Olli, Échangeur, Tarkov", "Utile pour faire un récupérateur d'eau", 20000);
+        ad.setUser(user);
         ad.setUuid("FEED-1");
         adManager.addFull(ad);
 
-        ad = new Advertisement("Fromage pourri", "14 rue du Moisi", "Pour éloigner vos voisins encombrants", 12, null);
+        ad = new Advertisement("Fromage pourri", "14 rue du Moisi", "Pour éloigner vos voisins encombrants", 12);
+        ad.setUser(user);
         ad.setUuid("FEED-2");
         adManager.addFull(ad);
 
-        ad = new Advertisement("Toblerone", "Suisse", "Une drogue efficace et plaisante", 10,null);
+        ad = new Advertisement("Toblerone", "Suisse", "Une drogue efficace et plaisante", 10);
+        ad.setUser(user);
         ad.setUuid("FEED-3");
         adManager.addFull(ad);
 
