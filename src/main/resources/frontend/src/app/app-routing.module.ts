@@ -14,8 +14,8 @@ const routes: Routes = [
   { path:'', component:HomeComponent },
   { path:'profile', component:ProfileComponent, canActivate:[AuthGardService] },
   { path:'users', component:UsersComponent, canActivate:[RoleGuardService] },
-  { path:'new-advertisement', component:NewAdvertisementComponent },
-  { path:'my-advertisement', component:MyAdvertisementComponent },
+  { path:'new-advertisement', component:NewAdvertisementComponent, canActivate:[AuthGardService] },
+  { path:'my-advertisement', component:MyAdvertisementComponent, canActivate:[AuthGardService] },
   { path:'all-advertisements', component:AllAdvertisementsComponent }
 ];
 

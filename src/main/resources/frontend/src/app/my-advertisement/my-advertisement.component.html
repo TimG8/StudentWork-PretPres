@@ -1,4 +1,4 @@
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-5 main">
   <table class="table table-bordered table-striped">
     <thead class="thead-dark">
       <tr>
@@ -11,7 +11,7 @@
     <tbody>
       <tr *ngFor="let ad of ads">
         <td>{{ ad.title }}</td>
-        <td>{{ ad.description }}</td>
+        <td class="text-truncate">{{ad.description | slice:0:20}}{{ ad.description.length > 20 ? '...' : ''}}</td>
         <td>{{ ad.address }}</td>
         <td>{{ ad.price }}</td>
       </tr>

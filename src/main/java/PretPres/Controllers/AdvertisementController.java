@@ -29,8 +29,10 @@ public class AdvertisementController {
                                 @RequestParam("description") String description,
                                 @RequestParam("price") float price,
                                 @RequestParam("user_id") long user_id,
-                                @RequestParam("picture")Blob pic) {
-        return adManager.add(title, address, description, price, user_id, pic);
+                                @RequestParam("picture")String pic) {
+
+        //CHANGING NULL AND STRING AFTER !!!
+        return adManager.add(title, address, description, price, user_id, null);
     }
 
     @PutMapping
@@ -41,16 +43,16 @@ public class AdvertisementController {
 
     @PutMapping
     @RequestMapping("validate")
-    public String validateAdvertisement(@RequestParam String uuid) {
+    public Iterable<Advertisement> validateAdvertisement(@RequestParam String uuid) {
         adManager.validateAdvertisement(uuid);
-        return "Validated advertisement with uuid : " + uuid;
+        return adManager.getAllAdvertisements();
     }
 
-    @DeleteMapping
+    @PostMapping
     @RequestMapping("delete")
-    public String deleteAdvertisement(@RequestParam("uuid") String uuid) {
+    public Iterable<Advertisement> deleteAdvertisement(@RequestParam("uuid") String uuid) {
         adManager.deleteAdvertisement(uuid);
-        return "Deleted advertisement with uuid : " + uuid;
+        return adManager.getAllAdvertisements();
     }
 
     @PostMapping

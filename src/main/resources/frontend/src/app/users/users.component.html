@@ -1,6 +1,8 @@
 <div class="container-fluid">
-  <h2 class="col-sm-5">Utilisateurs</h2>
-  <table class="table">
+  <h2 class="col-sm-5">Liste des utilisateurs</h2>
+  <h3 class="col-sm-10" *ngIf="users.length == 0">Aucun utilisateur n'a été trouvé.</h3>
+
+  <table *ngIf="users.length > 0" class="table">
     <thead></thead>
     <tr>
       <th scope="col">Nom</th>
@@ -18,7 +20,7 @@
       <td>{{user.mail}}</td>
       <td>{{user.phoneNumber}}</td>
       <td>{{user.adress}}</td>
-      <td><button *ngIf="!userIsAdmin(user)" type="button" class="btn btn-danger" (click)=delete(user.id)>Supprimer</button></td>
+      <td><button type="button" *ngIf="!userIsAdmin(user)" class="btn btn-danger" (click)=delete(user.id)>Supprimer</button></td>
     </tr>
     </tbody>
   </table>
