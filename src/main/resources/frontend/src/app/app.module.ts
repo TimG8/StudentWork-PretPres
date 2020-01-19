@@ -17,6 +17,7 @@ import { UsersComponent } from './users/users.component';
 import { HomeComponent } from './home/home.component';
 import { AllAdvertisementsComponent } from './all-advertisements/all-advertisements.component';
 import { AdvertisementComponent } from './advertisement/advertisement.component';
+import { SearchAdvertisementComponent } from './search-advertisement/search-advertisement.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { AdvertisementComponent } from './advertisement/advertisement.component'
     UsersComponent,
     HomeComponent,
     AllAdvertisementsComponent,
-    AdvertisementComponent
+    AdvertisementComponent,
+    SearchAdvertisementComponent
   ],
   imports: [
     BrowserModule,

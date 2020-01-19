@@ -5,26 +5,26 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto nav">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" routerLink="/all-advertisements">Annonces</a>
       </li>
-      <li class="nav-item active" *ngIf="this.isAdmin()">
-        <a class="nav-link" routerLink="/users">Utilisateurs</a>
+      <li class="nav-item" *ngIf="this.isAdmin()">
+        <span *ngIf="isAdmin()">
+          <a class="nav-link" routerLink="/users">Utilisateurs</a>
+        </span>
       </li>
     </ul>
 
     <div class="align-middle" *ngIf="!isUserLoggedIn()">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signin">Se connecter</button>
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#signin">Se connecter</button>
       <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#register">S'inscrire</button>
     </div>
 
     <div class="align-middle" *ngIf="isUserLoggedIn()">
       <div class="navbar-brand align-middle">Bienvenue {{this.user.firstName}} {{this.user.name}} !</div>
-      <!-- <span *ngIf="!isAdmin()"> -->
-        <a routerLink="/new-advertisement" type="button" class="d-inline btn btn-success">Prêter</a>
-        <a routerLink="/my-advertisement" type="button" class="d-inline btn btn-success">Mes prêts</a>
-        <a routerLink="/profile" type="button" class="d-inline btn btn-success">Mon profil</a>
-      <!-- </span> -->
+      <a routerLink="/new-advertisement" type="button" class="d-inline btn btn-success">Prêter</a>
+      <a routerLink="/my-advertisement" type="button" class="d-inline btn btn-success">Mes prêts</a>
+      <a routerLink="/profile" type="button" class="d-inline btn btn-success">Mon profil</a>
       <app-logout></app-logout>
     </div>
   </div>

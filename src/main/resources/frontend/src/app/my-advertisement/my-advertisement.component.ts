@@ -13,8 +13,6 @@ import { AdvertisementService } from '../service/advertisement.service'
 })
 
 export class MyAdvertisementComponent implements OnInit {
-  baseUrl = 'http://localhost:8080/advertisement';
-
   ads : Advertisement[];
   user : User;
 

@@ -1,0 +1,20 @@
+<div class="container-fluid mt-5 main">
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">Titre</th>
+      <th scope="col">Description</th>
+      <th scope="col">Adresse</th>
+      <th scope="col">Prix</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let ad of ads">
+      <td>{{ ad.title }}</td>
+      <td class="text-truncate">{{ad.description | slice:0:20}}{{ ad.description.length > 20 ? '...' : ''}}</td>
+      <td>{{ ad.address }}</td>
+      <td>{{ ad.price }}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
