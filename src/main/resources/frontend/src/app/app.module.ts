@@ -16,6 +16,7 @@ import { MyAdvertisementComponent } from './my-advertisement/my-advertisement.co
 import { UsersComponent } from './users/users.component';
 import { HomeComponent } from './home/home.component';
 import { AllAdvertisementsComponent } from './all-advertisements/all-advertisements.component';
+import { AdvertisementComponent } from './advertisement/advertisement.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AllAdvertisementsComponent } from './all-advertisements/all-advertiseme
     MyAdvertisementComponent,
     UsersComponent,
     HomeComponent,
-    AllAdvertisementsComponent
+    AllAdvertisementsComponent,
+    AdvertisementComponent
   ],
   imports: [
     BrowserModule,

@@ -42,7 +42,6 @@ export class NewAdvertisementComponent implements OnInit {
 
     setTimeout( () => { this.router.navigate(['/my-advertisement']); }, 500);
   }
-
   processFile(event){
       this.picture = event.target.files[0];
   }

@@ -35,9 +35,9 @@ public class AdvertisementController {
                                 @RequestParam("address") String address,
                                 @RequestParam("description") String description,
                                 @RequestParam("price") float price,
-                                @RequestParam("user_id") long user_id,
-                                @RequestPart("picture") MultipartFile pic) {
-        return adManager.add(title, address, description, price, user_id, pic);
+                                @RequestParam("user_id") long user_id
+                                ) {
+        return adManager.add(title, address, description, price, user_id, null);
     }
 
     @PutMapping
@@ -64,6 +64,12 @@ public class AdvertisementController {
     @RequestMapping("searchByTitle")
     public Collection<Advertisement> searchByTitle(@RequestParam("title") String title) {
         return adManager.getAdvertisementsByTitle(title);
+    }
+
+    @PostMapping
+    @RequestMapping("searchByUuid")
+    public Advertisement searchByUuid(@RequestParam("uuid") String uuid) {
+        return adManager.getAdvertisementsByUuid(uuid);
     }
 
     @PostMapping

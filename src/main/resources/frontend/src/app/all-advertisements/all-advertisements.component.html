@@ -6,17 +6,15 @@
     <thead></thead>
     <tr>
       <th scope="col">Intitulé</th>
-      <th scope="col">Adresse</th>
       <th scope="col">Prix</th>
-      <th scope="col">Description</th>
+      <th scope="col">Adresse</th>
     </tr>
 
     <tbody>
     <tr *ngFor="let ad of ads">
-      <td>{{ad.title}}</td>
-      <td>{{ad.address}}</td>
+      <td><a [routerLink]="['/advertisement',ad.uuid]">{{ad.title}}</a></td>
       <td>{{ad.price}}</td>
-      <td class="text-truncate">{{ad.description | slice:0:20}}{{ ad.description.length > 20 ? '...' : ''}}</td>
+      <td>{{ad.address}}</td>
       <td *ngIf="!ad.validated"><button type="button" class="btn btn-success" (click)=validate(ad.uuid)>Valider</button></td>
       <td *ngIf="this.user.isAdmin()"><button type="button" class="btn btn-danger" (click)=delete(ad.uuid)>Supprimer</button></td>
     </tr>
