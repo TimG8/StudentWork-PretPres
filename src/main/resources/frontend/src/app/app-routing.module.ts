@@ -9,6 +9,7 @@ import { UsersComponent } from "./users/users.component";
 import { RoleGuardService } from "./service/role-guard.service";
 import { HomeComponent } from "./home/home.component";
 import { AllAdvertisementsComponent } from "./all-advertisements/all-advertisements.component";
+import {AdvertisementComponent} from "./advertisement/advertisement.component";
 
 const routes: Routes = [
   { path:'', component:HomeComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path:'users', component:UsersComponent, canActivate:[RoleGuardService] },
   { path:'new-advertisement', component:NewAdvertisementComponent, canActivate:[AuthGardService] },
   { path:'my-advertisement', component:MyAdvertisementComponent, canActivate:[AuthGardService] },
-  { path:'all-advertisements', component:AllAdvertisementsComponent }
+  { path:'all-advertisements', component:AllAdvertisementsComponent },
+  { path:'advertisement/:id', component:AdvertisementComponent}
 ];
 
 @NgModule({

@@ -64,5 +64,4 @@ export class AllAdvertisementsComponent implements OnInit {
       console.log(error);
     });
   }
-
 }

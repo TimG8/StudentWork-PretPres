@@ -69,16 +69,17 @@ public class AdvertisementManagement implements IAdvertisementManagement {
         Advertisement ad = new Advertisement(title, address, description, price);
         ad.setUser(user.get());
 
-        Picture image;
-        try{
-           image = new Picture(ad.getUuid(),pic);
-           pictureRepo.save(image);
-           ad.setPic(image);
-        }catch(IOException e){
-            System.out.println(e);
-            return null;
+        if(pic != null) {
+            Picture image;
+            try {
+                image = new Picture(ad.getUuid(), pic);
+                pictureRepo.save(image);
+                ad.setPic(image);
+            } catch (IOException e) {
+                System.out.println(e);
+                return null;
+            }
         }
-
         return adRepo.save(ad);
     }
 
@@ -102,6 +103,16 @@ public class AdvertisementManagement implements IAdvertisementManagement {
         ad.setUuid(advertisement.getUuid());
 
         return adRepo.save(ad);
+    }
+
+    @Override
+    public Advertisement getAdvertisementsByUuid(String uudi) {
+        Advertisement ad = adRepo.findByUuid(uudi);
+
+        if (ad == null) {
+            return null;
+        }
+        return ad;
     }
 
     @Override

@@ -22,7 +22,6 @@ export class AuthentificationService {
       .set("mail", mail)
       .set("password", password);
 
-
     this.httpClient.post<User>(request,params)
       .subscribe((user : User) => {
         if(user !== null){

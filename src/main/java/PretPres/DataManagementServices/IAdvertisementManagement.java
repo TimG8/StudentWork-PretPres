@@ -15,6 +15,7 @@ public interface IAdvertisementManagement {
     Advertisement add(String title, String address, String description, float price, long user_id, MultipartFile pic);
     Advertisement addFull(Advertisement ad);
     Advertisement updateAdvertisement(Advertisement advertisement);
+    Advertisement getAdvertisementsByUuid(String uudi);
     void deleteAdvertisement(String uuid);
     void validateAdvertisement(String uuid);
 }
