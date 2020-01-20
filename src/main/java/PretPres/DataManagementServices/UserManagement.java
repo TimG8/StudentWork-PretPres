@@ -95,6 +95,28 @@ public class UserManagement implements IUserManagement {
     }
 
     @Override
+    public User updateAddress(Long id, String address) {
+        var isReal =  userRepo.findById(id);
+        if(isReal.isEmpty()){
+            return null;
+        }
+        var dbUser = isReal.get();
+        dbUser.setAddress(address);
+        return userRepo.save(dbUser);
+    }
+
+    @Override
+    public User updatePhone(Long id, String phone) {
+        var isReal =  userRepo.findById(id);
+        if(isReal.isEmpty()){
+            return null;
+        }
+        var dbUser = isReal.get();
+        dbUser.setPhoneNumber(phone);
+        return userRepo.save(dbUser);
+    }
+
+    @Override
     public User updateName(Long id, String name) {
         var isReal =  userRepo.findById(id);
         if(isReal.isEmpty()){

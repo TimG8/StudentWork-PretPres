@@ -15,6 +15,8 @@ export class RegisterComponent implements OnInit {
   name: "";
   passwordConfirm: "";
   firstname: "";
+  phoneNumber: "";
+  address: "";
 
   constructor(
     private service : AuthentificationService
@@ -49,12 +51,21 @@ export class RegisterComponent implements OnInit {
       register = false;
     }
 
+    if(this.phoneNumber != null){
+      if(!this.phoneNumber.match("^((\\+)33|0)[1-9](\\d{2}){4}$")){
+        $("#wrongPhone").css("display","block");
+        register = false;
+      }
+    }
+
     if(register) {
       this.user.password = this.password;
       this.user.mail = this.mail;
       this.user.firstName = this.firstname;
       this.user.name = this.name;
       this.user.role.name = "User";
+      this.user.phoneNumber = this.phoneNumber;
+      this.user.address = this.address;
       console.log(this.user);
       this.service.register(this.user);
     }

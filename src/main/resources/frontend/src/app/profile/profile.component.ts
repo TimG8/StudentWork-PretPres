@@ -21,6 +21,8 @@ export class ProfileComponent implements OnInit {
   firstName: "";
 
   type: "";
+  phone: "";
+  address: "";
 
   constructor(
     private httpClient:HttpClient
@@ -158,6 +160,69 @@ export class ProfileComponent implements OnInit {
         });
   }
 
+  updatePhoneNumber() {
+    $(".wrong").css("display","none");
+
+    if(this.phone == this.user.phoneNumber){
+      $("#wrongSamePhoneProfile").css("display","block");
+      return;
+    }
+
+    if(!this.phone.match("^((\\+)33|0)[1-9](\\d{2}){4}$")){
+      $("#wrongPhoneProfile").css("display","block");
+      return;
+    }
+    let request = this.baseUrl+'/updatePhone';
+    let params = new HttpParams()
+      .set("id", this.user.id)
+      .set("phone",this.phone);
+
+    this.httpClient.put<User>(request,params)
+      .subscribe((user : User) => {
+          if(user !== null){
+            sessionStorage.setItem("phone",user.phoneNumber);
+            $("#phoneProfile").val(user.phoneNumber);
+            this.displayModal("numéro");
+            this.reset();
+          }else{
+            alert("Erreur dans le changement de prénom !");
+          }
+        },
+        (error : HttpErrorResponse) => {
+          alert("Erreur dans le changement de prénom !");
+        });
+  }
+
+  updateAddress() {
+    $(".wrong").css("display","none");
+
+    if(this.address == this.user.address){
+      $("#wrongAddressProfile").css("display","block");
+      return;
+    }
+
+    let request = this.baseUrl+'/updateAddress';
+    let params = new HttpParams()
+      .set("id", this.user.id)
+      .set("address",this.address);
+
+    this.httpClient.put<User>(request,params)
+      .subscribe((user : User) => {
+          if(user !== null){
+            sessionStorage.setItem("address",user.address);
+            $("#addressProfile").val(user.address);
+            this.displayModal("adresse");
+            this.reset();
+          }else{
+            alert("Erreur dans le changement de prénom !");
+          }
+        },
+        (error : HttpErrorResponse) => {
+          alert("Erreur dans le changement de prénom !");
+        });
+  }
+
+
   displayModal(type){
     this.type = type;
     $("#successProfile").fadeIn();
@@ -173,8 +238,10 @@ export class ProfileComponent implements OnInit {
     this.confirmNewPassword = "";
     this.password = "";
     this.mail = "";
+    this.phone = "";
 
     this.user.getSessionItems();
   }
+
 
 }

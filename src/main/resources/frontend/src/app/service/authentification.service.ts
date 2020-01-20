@@ -41,7 +41,7 @@ export class AuthentificationService {
     sessionStorage.setItem("firstName",user.firstName);
     sessionStorage.setItem("mail",user.mail);
     sessionStorage.setItem("password",user.password);
-    sessionStorage.setItem("adress",user.adress);
+    sessionStorage.setItem("adress",user.address);
     sessionStorage.setItem("phone",user.phoneNumber);
     sessionStorage.setItem("role", user.role.name)
   }

@@ -50,6 +50,24 @@
           <button type="submit" class="btn btn-success mb-2">Changer mot de passe</button>
         </form>
       </div>
+
+
+      <div class="card">
+        <form class="card-body" ngNativeValidate (ngSubmit)="updatePhoneNumber()">
+          <h5 class="card-title">Modifier votre numéro de téléphone</h5>
+          <div class="form-group row">
+            <label for="phoneProfile" class="col-sm-5 col-form-label">Votre numéro actuel</label>
+            <input type="text" readonly class="form-control-plaintext col-sm-5" id="phoneProfile" value={{this.user.phoneNumber}}>
+          </div>
+          <div class="form-group row">
+            <label for="newMailProfile" class="col-sm-5 col-form-label">Votre nouveau numéro</label>
+            <input type="text" name="phone" required="required" class="form-control col-sm-5" id="newPhoneProfile"  [(ngModel)]="phone">
+              <p id="wrongPhoneProfile" class="wrong">Le numéro de téléphone rentré n'est pas valide !</p>
+              <p id="wrongSamePhoneProfile" class="wrong col-sm-11">Le numéro rentré est le même que l'actuel !</p>
+          </div>
+          <button type="submit" class="btn btn-success mb-2">Changer de numéro</button>
+        </form>
+      </div>
     </div>
 
     <div class="col-md-6">
@@ -85,6 +103,24 @@
             <button type="submit" class="btn btn-success mb-2">Changer de pénom</button>
           </form>
         </div>
+
+
+      <div class="card">
+        <form class="card-body" ngNativeValidate (ngSubmit)="updateAddress()">
+          <h6 class="card-title">Modifier votre adresse</h6>
+          <div class="form-group row">
+            <label for="addressProfile" class="col-sm-5 col-form-label">Votre adresse actuelle</label>
+            <input type="text" readonly class="form-control-plaintext col-sm-5" id="addressProfile" value={{this.user.address}}>
+          </div>
+          <div class="form-group row">
+            <label for="newaddressProfile" class="col-sm-5 col-form-label">Entrer votre nouvelle adresse</label>
+            <input type="text" required="required" name="addressProfile" class="form-control col-sm-5" id="newaddressProfile" [(ngModel)]="address">
+            <p id="wrongAddressProfile" class="wrong col-sm-11">L'adresse rentrée est la même que l'actuelle !</p>
+          </div>
+          <button type="submit" class="btn btn-success mb-2">Changer d'adresse</button>
+        </form>
+      </div>
+
     </div>
   </div>
 </div>

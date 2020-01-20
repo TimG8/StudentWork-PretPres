@@ -14,6 +14,8 @@ public interface IUserManagement {
     User updateUser(User user);
     User updatePassword(User user, String password);
     User updatePassword(Long id, String password);
+    User updateAddress(Long id, String address);
+    User updatePhone(Long id, String phone);
     User updateName(Long id, String name);
     User updateMail(Long id, String mail);
     User updateFirstName(Long id, String firstName);

@@ -53,6 +53,21 @@
           <li>
             <p id="wrongfirstname" class="wrong">Seules les lettres sont autorisées !</p>
           </li>
+          <li>
+            <label for="phoneNumber" class="col-form-label-lg">Numéro de téléphone</label>
+          </li>
+          <li>
+            <input  type="text" class="form-control" name="phoneNumber" id="phoneNumber" maxlength="25" placeholder="0000000000" [(ngModel)]="phoneNumber"/>
+          </li>
+          <li>
+            <p id="wrongPhone" class="wrong">Le numéro de téléphone rentré n'est pas valide !</p>
+          </li>
+          <li>
+            <label for="address" class="col-form-label-lg">Addresse</label>
+          </li>
+          <li>
+            <input  type="text" class="form-control" name="address" id="address" maxlength="50" placeholder="Addresse" [(ngModel)]="address"/>
+          </li>
         </ul>
       </div>
       <div class="modal-footer">

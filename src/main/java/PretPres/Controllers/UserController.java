@@ -71,6 +71,18 @@ public class UserController {
         return userManager.updateMail(id,mail);
     }
 
+    @PutMapping
+    @RequestMapping("updateAddress")
+    public User updateAddress(@RequestParam("id") Long id,@RequestParam("address") String address){
+        return userManager.updateAddress(id,address);
+    }
+
+    @PutMapping
+    @RequestMapping("updatePhone")
+    public User updatePhone(@RequestParam("id") Long id,@RequestParam("phone") String phone){
+        return userManager.updatePhone(id,phone);
+    }
+
     @RequestMapping("feed")
     public User addUsers(){
         var role = roleManager.addRole("Admin");
