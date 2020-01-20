@@ -14,7 +14,7 @@ import { AdvertisementService } from '../service/advertisement.service'
 export class HomeComponent implements OnInit {
   baseUrl = 'http://localhost:8080/advertisement';
 
-  title : "";
+  title : string;
 
   constructor(
     private router: Router,

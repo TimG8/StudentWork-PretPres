@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from "../model/model.user";
-import {delay} from "rxjs/operators";
+import { Router } from '@angular/router';
+
+import { Advertisement } from '../model/model.advertisement';
+import { AdvertisementService } from '../service/advertisement.service'
+
+import { User } from "../model/model.user";
+
 declare var $: any;
 
 @Component({
@@ -8,10 +13,16 @@ declare var $: any;
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
+
 export class HeaderComponent implements OnInit {
   user : User;
 
-  constructor() { }
+  title : string;
+
+  constructor(
+    private router: Router,
+    private advertisementService : AdvertisementService
+  ) { }
 
   ngOnInit() {
     this.user = new User();
@@ -27,8 +38,17 @@ export class HeaderComponent implements OnInit {
     return !(user === null);
   }
 
-  isAdmin(){
+  isAdmin() {
     this.user.getSessionItems();
     return this.user.isAdmin();
+  }
+
+  isHome() {
+    return this.router.url === '/';
+  }
+
+  search() {
+    this.advertisementService.setSearchTitle(this.title);
+    this.router.navigate(['/search-advertisement']);
   }
 }

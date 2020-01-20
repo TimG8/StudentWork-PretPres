@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs'
 
 import { Advertisement } from '../model/model.advertisement';
 import { User } from '../model/model.user';
@@ -17,7 +18,7 @@ export class AdvertisementService {
     this.baseUrl = 'http://localhost:8080/advertisement';
   }
 
-  public findByUserId(user : User) {
+  public findByUserId(user : User) : Observable<Advertisement[]> {
     let request = this.baseUrl + '/adsOfUser';
 
     let params = new HttpParams()
@@ -26,7 +27,7 @@ export class AdvertisementService {
     return this.http.post<Advertisement[]>(request, params);
   }
 
-  public createAdvertisement(title : string, address : string, description : string, price : string, user : User, file : File) {
+  public createAdvertisement(title : string, address : string, description : string, price : string, user : User, file : File) : Observable<Advertisement> {
     let request = this.baseUrl + '/create';
 
     const formData = new FormData();
@@ -41,15 +42,15 @@ export class AdvertisementService {
     return this.http.post<Advertisement>(request, formData);
   }
 
-  public setSearchTitle(title : string) {
+  public setSearchTitle(title : string) : void {
     this.title = title;
   }
 
-  public searchByTitle() {
+  public searchByTitle() : Observable<Advertisement[]> {
     let request = this.baseUrl + '/searchByTitle';
 
     let params = new HttpParams().set("title", this.title);
 
-    return this.http.post<Advertisement>(request, params);
+    return this.http.post<Advertisement[]>(request, params);
   }
 }
