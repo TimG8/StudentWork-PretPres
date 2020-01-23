@@ -6,19 +6,24 @@ import { AdvertisementService } from "../service/advertisement.service";
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
-  selector: 'app-advertisement',
-  templateUrl: './advertisement.component.html',
-  styleUrls: ['./advertisement.component.css']
+  selector: 'app-modify-advertisement',
+  templateUrl: './modify-advertisement.component.html',
+  styleUrls: ['./modify-advertisement.component.css']
 })
+export class ModifyAdvertisementComponent implements OnInit {
 
-export class AdvertisementComponent implements OnInit {
   user : User;
   ad : Advertisement;
+  title : "";
+  address : "";
+  description : "";
+  price : "";
+  picture : File;
 
   constructor(
-    private route: ActivatedRoute,
-    private service: AdvertisementService,
-    private router: Router) {
+    private route : ActivatedRoute,
+    private service : AdvertisementService,
+    private router : Router) {
     this.user = new User();
     this.ad = new Advertisement();
   }
@@ -41,5 +46,31 @@ export class AdvertisementComponent implements OnInit {
       //this.router.navigate(['all-advertisements']);
       console.log(error);
     });
+  }
+
+  updateAdvertisement() {
+    if (this.title != null) {
+      this.ad.title = this.title;
+    }
+
+    if (this.address != null) {
+      this.ad.address = this.address;
+    }
+
+    if (this.description != null) {
+      this.ad.description = this.description;
+    }
+
+    if (this.price != null) {
+      this.ad.price = this.price;
+    }
+
+    this.service.updateAdvertisement(this.ad).subscribe(() => {
+      (error : HttpErrorResponse) => {
+        console.log(error);
+      }
+    });
+
+    setTimeout( () => { this.router.navigate(['/my-advertisement']); }, 500);
   }
 }

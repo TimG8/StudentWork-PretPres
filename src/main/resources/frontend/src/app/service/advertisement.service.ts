@@ -14,7 +14,7 @@ export class AdvertisementService {
   private baseUrl : string;
   private title : string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http : HttpClient) {
     this.baseUrl = 'http://localhost:8080/advertisement';
   }
 
@@ -42,6 +42,12 @@ export class AdvertisementService {
     return this.http.post<Advertisement>(request, formData);
   }
 
+  public updateAdvertisement(ad : Advertisement) : Observable<Advertisement> {
+    let request = this.baseUrl + '/update';
+
+    return this.http.put<Advertisement>(request, ad);
+  }
+
   public setSearchTitle(title : string) : void {
     this.title = title;
   }
@@ -52,5 +58,48 @@ export class AdvertisementService {
     let params = new HttpParams().set("title", this.title);
 
     return this.http.post<Advertisement[]>(request, params);
+  }
+
+  public findByUuid(uuid : string) : Observable<Advertisement> {
+    let request = this.baseUrl + '/searchByUuid'
+
+    let params = new HttpParams()
+      .set("uuid", uuid);
+
+    return this.http.post<Advertisement>(request, params);
+  }
+
+  public getAllAds() : Observable<Advertisement[]> {
+    return this.http.get<Advertisement[]>(this.baseUrl);
+  }
+
+  public getValidatedAds() : Observable<Advertisement[]> {
+    let request = this.baseUrl + '/validatedAdvertisements';
+
+    return this.http.get<Advertisement[]>(request);
+  }
+
+  public deleteAd(uuid : string) : Observable<Advertisement> {
+    let request = this.baseUrl + '/delete';
+
+    let param = new HttpParams().set("uuid", uuid);
+
+    return this.http.put<Advertisement>(request, param);
+  }
+
+  public validateAd(uuid : string) : Observable<Advertisement> {
+    let request = this.baseUrl + '/validate';
+
+    let param = new HttpParams().set("uuid", uuid);
+
+    return this.http.put<Advertisement>(request, param);
+  }
+
+  public unvalidateAd(uuid : string) : Observable<Advertisement> {
+    let request = this.baseUrl + '/unvalidate';
+
+    let param = new HttpParams().set("uuid", uuid);
+
+    return this.http.put<Advertisement>(request, param);
   }
 }

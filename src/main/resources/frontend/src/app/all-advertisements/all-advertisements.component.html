@@ -15,7 +15,8 @@
       <td><a [routerLink]="['/advertisement',ad.uuid]">{{ad.title}}</a></td>
       <td>{{ad.price}}</td>
       <td>{{ad.address}}</td>
-      <td *ngIf="!ad.validated"><button type="button" class="btn btn-success" (click)=validate(ad.uuid)>Valider</button></td>
+      <td *ngIf="!ad.validated && this.user.isAdmin()"><button type="button" class="btn btn-success" (click)=validate(ad.uuid)>Valider</button></td>
+      <td *ngIf="ad.validated && this.user.isAdmin()"><button type="button" class="btn btn-warning" (click)="unvalidate(ad.uuid)">Invalider</button></td>
       <td *ngIf="this.user.isAdmin()"><button type="button" class="btn btn-danger" (click)=delete(ad.uuid)>Supprimer</button></td>
     </tr>
     </tbody>

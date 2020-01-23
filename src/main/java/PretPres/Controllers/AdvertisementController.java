@@ -48,16 +48,20 @@ public class AdvertisementController {
 
     @PutMapping
     @RequestMapping("validate")
-    public Iterable<Advertisement> validateAdvertisement(@RequestParam String uuid) {
-        adManager.validateAdvertisement(uuid);
-        return adManager.getAllAdvertisements();
+    public Advertisement validateAdvertisement(@RequestParam("uuid") String uuid) {
+        return adManager.validateAdvertisement(uuid);
     }
 
-    @PostMapping
+    @PutMapping
+    @RequestMapping("unvalidate")
+    public Advertisement unvalidateAdvertisement(@RequestParam("uuid") String uuid) {
+        return adManager.unvalidateAdvertisement(uuid);
+    }
+
+    @DeleteMapping
     @RequestMapping("delete")
-    public Iterable<Advertisement> deleteAdvertisement(@RequestParam("uuid") String uuid) {
+    public void deleteAdvertisement(@RequestParam("uuid") String uuid) {
         adManager.deleteAdvertisement(uuid);
-        return adManager.getAllAdvertisements();
     }
 
     @PostMapping

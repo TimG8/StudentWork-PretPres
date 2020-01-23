@@ -11,6 +11,7 @@ import { HomeComponent } from "./home/home.component";
 import { AllAdvertisementsComponent } from "./all-advertisements/all-advertisements.component";
 import { AdvertisementComponent } from "./advertisement/advertisement.component";
 import { SearchAdvertisementComponent } from "./search-advertisement/search-advertisement.component";
+import { ModifyAdvertisementComponent } from "./modify-advertisement/modify-advertisement.component";
 
 const routes: Routes = [
   { path:'', component:HomeComponent },
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path:'my-advertisement', component:MyAdvertisementComponent, canActivate:[AuthGardService] },
   { path:'all-advertisements', component:AllAdvertisementsComponent },
   { path:'advertisement/:id', component:AdvertisementComponent },
-  { path:'search-advertisement', component:SearchAdvertisementComponent }
+  { path:'search-advertisement', component:SearchAdvertisementComponent },
+  { path:'modify-advertisement/:id', component:ModifyAdvertisementComponent }
 ];
 
 @NgModule({

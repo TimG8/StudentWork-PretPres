@@ -29,4 +29,12 @@ export class MyAdvertisementComponent implements OnInit {
       this.ads = data;
     });
   }
+
+  delete(uuid : string) {
+    this.advertisementService.deleteAd(uuid).subscribe(() => {
+      this.ngOnInit();
+    }, (error : HttpErrorResponse) => {
+      console.log(error);
+    });
+  }
 }

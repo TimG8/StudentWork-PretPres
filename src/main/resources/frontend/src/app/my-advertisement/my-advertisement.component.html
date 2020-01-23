@@ -6,6 +6,8 @@
         <th scope="col">Description</th>
         <th scope="col">Adresse</th>
         <th scope="col">Prix</th>
+        <th scope="col">Validation</th>
+        <th scope="col">Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -14,6 +16,11 @@
         <td class="text-truncate">{{ad.description | slice:0:20}}{{ ad.description.length > 20 ? '...' : ''}}</td>
         <td>{{ ad.address }}</td>
         <td>{{ ad.price }}</td>
+        <td>{{ ad.validated }}</td>
+        <td>
+          <button [routerLink]="['/modify-advertisement',ad.uuid]" class="btn btn-success mr-2">Modifier</button>
+          <button type="button" class="btn btn-danger" (click)=delete(ad.uuid)>Supprimer</button>
+        </td>
       </tr>
     </tbody>
   </table>

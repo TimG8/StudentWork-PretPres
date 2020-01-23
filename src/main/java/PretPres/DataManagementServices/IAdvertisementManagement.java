@@ -17,5 +17,6 @@ public interface IAdvertisementManagement {
     Advertisement updateAdvertisement(Advertisement advertisement);
     Advertisement getAdvertisementsByUuid(String uudi);
     void deleteAdvertisement(String uuid);
-    void validateAdvertisement(String uuid);
+    Advertisement validateAdvertisement(String uuid);
+    Advertisement unvalidateAdvertisement(String uuid);
 }

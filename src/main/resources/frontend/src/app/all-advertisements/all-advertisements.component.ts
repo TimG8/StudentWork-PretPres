@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {Advertisement} from "../model/model.advertisement";
-import {User} from "../model/model.user";
-import {Router} from "@angular/router";
-import {AdvertisementService} from "../service/advertisement.service";
-import {AllAdvertisementsService} from "./all-advertisements.service";
-import {HttpErrorResponse} from "@angular/common/http";
+import { Advertisement } from "../model/model.advertisement";
+import { User } from "../model/model.user";
+import { Router } from "@angular/router";
+import { AdvertisementService } from "../service/advertisement.service";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
   selector: 'app-all-advertisements',
@@ -18,7 +17,7 @@ export class AllAdvertisementsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private adService : AllAdvertisementsService
+    private adService : AdvertisementService
   ) {
     this.user = new User();
     this.ads = [];
@@ -26,14 +25,15 @@ export class AllAdvertisementsComponent implements OnInit {
 
   ngOnInit() {
     this.user.getSessionItems();
-    if(this.user.isAdmin()){
+    if (this.user.isAdmin()) {
       this.getAllAds();
-    }else{
+    }
+    else {
       this.getValidatedAds();
     }
   }
 
-  getAllAds(){
+  getAllAds() {
     this.adService.getAllAds().subscribe((ads : Advertisement[]) => {
       this.ads = ads;
     }, (error : HttpErrorResponse) => {
@@ -41,7 +41,7 @@ export class AllAdvertisementsComponent implements OnInit {
     });
   }
 
-  getValidatedAds(){
+  getValidatedAds() {
     this.adService.getValidatedAds().subscribe((ads : Advertisement[]) => {
       this.ads = ads;
     }, (error : HttpErrorResponse) => {
@@ -49,17 +49,25 @@ export class AllAdvertisementsComponent implements OnInit {
     });
   }
 
-  delete(uuid){
-    this.adService.deleteAd(uuid).subscribe((ads : Advertisement[]) => {
-      this.ads = ads;
+  delete(uuid : string) {
+    this.adService.deleteAd(uuid).subscribe(() => {
+      this.ngOnInit();
     }, (error : HttpErrorResponse) => {
       console.log(error);
     });
   }
 
-  validate(uuid){
-    this.adService.validateAd(uuid).subscribe((ads : Advertisement[]) => {
-      this.ads = ads;
+  validate(uuid : string){
+    this.adService.validateAd(uuid).subscribe(() => {
+      this.ngOnInit();
+    }, (error : HttpErrorResponse) => {
+      console.log(error);
+    });
+  }
+
+  unvalidate(uuid : string){
+    this.adService.unvalidateAd(uuid).subscribe(() => {
+      this.ngOnInit();
     }, (error : HttpErrorResponse) => {
       console.log(error);
     });

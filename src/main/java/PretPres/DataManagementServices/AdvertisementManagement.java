@@ -101,6 +101,7 @@ public class AdvertisementManagement implements IAdvertisementManagement {
         ad.setDescription(advertisement.getDescription());
         ad.setPrice(advertisement.getPrice());
         ad.setUuid(advertisement.getUuid());
+        ad.setValidated(false);
 
         return adRepo.save(ad);
     }
@@ -125,12 +126,26 @@ public class AdvertisementManagement implements IAdvertisementManagement {
     }
 
     @Override
-    public void validateAdvertisement(String uuid) {
+    public Advertisement validateAdvertisement(String uuid) {
         Advertisement ad = adRepo.findByUuid(uuid);
 
         if (ad != null) {
             ad.setValidated(true);
             adRepo.save(ad);
         }
+
+        return ad;
+    }
+
+    @Override
+    public Advertisement unvalidateAdvertisement(String uuid) {
+        Advertisement ad = adRepo.findByUuid(uuid);
+
+        if (ad != null) {
+            ad.setValidated(false);
+            adRepo.save(ad);
+        }
+
+        return ad;
     }
 }
