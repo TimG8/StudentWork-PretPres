@@ -1,7 +1,12 @@
-.card{
-  width: 25rem;
-  margin-top: 3rem; /* Added */
+.card {
+  width: 30rem;
   margin-left: auto;
   margin-right: auto;
-  float: none; /* Added */
+}
+
+.container {
+  padding-top: 3rem;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
 }
