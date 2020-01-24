@@ -7,7 +7,7 @@
       <tr class="card" *ngFor="let ad of ads">
         <div class="row">
           <div class="col-md-auto">
-              <img src="https://picsum.photos/200/150/?random" alt="Picture">
+            <img src="https://picsum.photos/200/150/?random" alt="Picture">
           </div>
           <div class="card-block col-md-auto">
             <a class="card-title" [routerLink]="['/advertisement',ad.uuid]">{{ad.title}}</a>

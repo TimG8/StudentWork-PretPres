@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Advertisement } from '../model/model.advertisement';
-import { AdvertisementService } from '../service/advertisement.service'
+import { AdvertisementService } from '../service/advertisement.service';
 
-import { User } from "../model/model.user";
+import { User } from '../model/model.user';
 
 declare var $: any;
 
@@ -15,13 +15,12 @@ declare var $: any;
 })
 
 export class HeaderComponent implements OnInit {
-  user : User;
-
-  title : string;
+  user: User;
+  title: string;
 
   constructor(
     private router: Router,
-    private advertisementService : AdvertisementService
+    private advertisementService: AdvertisementService
   ) { }
 
   ngOnInit() {
@@ -29,12 +28,14 @@ export class HeaderComponent implements OnInit {
   }
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('id');
-    if(user != null){
+    const user = sessionStorage.getItem('id');
+
+    if (user != null) {
       this.user.getSessionItems();
       $('#signin').modal('hide');
       $('#register').modal('hide');
     }
+
     return !(user === null);
   }
 

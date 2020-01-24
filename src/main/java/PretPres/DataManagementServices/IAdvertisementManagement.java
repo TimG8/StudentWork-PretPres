@@ -9,6 +9,7 @@ import java.util.List;
 public interface IAdvertisementManagement {
     Iterable<Advertisement> getAllAdvertisements();
     List<Advertisement> getAdvertisementsByTitle(String title);
+    List<Advertisement> getAdvertisementsByTitleAndValidated(String title);
     List<Advertisement> getAdvertisementsByPrice(float price);
     List<Advertisement> getAdvertisementsByUserId(long user_id);
     List<Advertisement> getAdvertisementByValidation(boolean validated);

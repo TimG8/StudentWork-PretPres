@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
 
 import { Advertisement } from '../model/model.advertisement';
 import { User } from '../model/model.user';
-import { AdvertisementService } from '../service/advertisement.service'
+import { AdvertisementService } from '../service/advertisement.service';
 
 @Component({
   selector: 'app-my-advertisement',
@@ -13,12 +13,12 @@ import { AdvertisementService } from '../service/advertisement.service'
 })
 
 export class MyAdvertisementComponent implements OnInit {
-  ads : Advertisement[];
-  user : User;
+  ads: Advertisement[];
+  user: User;
 
   constructor(
     private router: Router,
-    private advertisementService : AdvertisementService
+    private advertisementService: AdvertisementService
   ) { }
 
   ngOnInit() {
@@ -30,10 +30,10 @@ export class MyAdvertisementComponent implements OnInit {
     });
   }
 
-  delete(uuid : string) {
+  delete(uuid: string) {
     this.advertisementService.deleteAd(uuid).subscribe(() => {
       this.ngOnInit();
-    }, (error : HttpErrorResponse) => {
+    }, (error: HttpErrorResponse) => {
       console.log(error);
     });
   }

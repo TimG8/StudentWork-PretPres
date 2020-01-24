@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface AdvertisementRepository extends CrudRepository<Advertisement, Long> {
     List<Advertisement> findByTitleContaining(String title);
+    List<Advertisement> findByTitleContainingAndValidatedTrue(String title);
     List<Advertisement> findByPrice(float price);
     List<Advertisement> findByUserId(long user_id);
     List<Advertisement> findByValidatedTrue();

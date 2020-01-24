@@ -40,6 +40,11 @@ public class AdvertisementManagement implements IAdvertisementManagement {
     }
 
     @Override
+    public List<Advertisement> getAdvertisementsByTitleAndValidated(String title) {
+        return adRepo.findByTitleContainingAndValidatedTrue(title);
+    }
+
+    @Override
     public List<Advertisement> getAdvertisementsByPrice(float price) {
         return adRepo.findByPrice(price);
     }

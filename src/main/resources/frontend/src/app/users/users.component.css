@@ -1,1 +1,24 @@
+.container-fluid {
+  padding-top: 3rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.card {
+  margin-bottom: 1rem;
+}
+
+.card-block {
+  margin: auto 0;
+}
+
+.mleft {
+  margin-left: auto;
+}
+
+.mright {
+  margin-right: 2rem;
+}
 

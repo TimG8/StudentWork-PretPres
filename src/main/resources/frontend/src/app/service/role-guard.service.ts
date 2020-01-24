@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from "@angular/router";
-import {AuthentificationService} from "./authentification.service";
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { AuthentificationService } from './authentification.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RoleGuardService implements CanActivate{
+
+export class RoleGuardService implements CanActivate {
 
   constructor(
     private router: Router,
@@ -13,9 +14,10 @@ export class RoleGuardService implements CanActivate{
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if(this.authService.isAdmin()){
+    if (this.authService.isAdmin()) {
       return true;
     }
+
     return false;
   }
 }

@@ -1,9 +1,21 @@
-.wrong{
+.wrong {
   color: red;
   display: none;
 }
 
-#successProfile{
+#successProfile {
   display: none;
   width: 50%;
+}
+
+.container-fluid {
+  margin-top: 3rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+.card {
+  margin-bottom: 1em;
 }

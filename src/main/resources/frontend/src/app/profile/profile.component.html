@@ -1,14 +1,13 @@
-<div class="container-fluid mt-5">
+<div class="container-fluid">
+  <h2 class="col-sm-5">Votre profil</h2>
 
-  <div class="row">
-    <h2 class="col-sm-5">Votre profil</h2>
-    <div id="successProfile" class="alert alert-success alert-dismissible fade show" role="alert">
-      La modification de votre {{this.type}} à été effectuée !
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
+  <div id="successProfile" class="alert alert-success alert-dismissible fade show" role="alert">
+    La modification de votre {{this.type}} à été effectuée !
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
   </div>
+
   <div class="form-group row justify-content-center">
     <div class="col-md-6">
       <div class="card">
@@ -51,7 +50,6 @@
         </form>
       </div>
 
-
       <div class="card">
         <form class="card-body" ngNativeValidate (ngSubmit)="updatePhoneNumber()">
           <h5 class="card-title">Modifier votre numéro de téléphone</h5>
@@ -71,41 +69,40 @@
     </div>
 
     <div class="col-md-6">
-        <div class="card">
-          <form class="card-body" ngNativeValidate (ngSubmit)="updateName()">
-            <h5 class="card-title border-bottom border-dark">Modifier vos autres informations</h5>
-            <h6 class="card-title">Modifier votre nom</h6>
-            <div class="form-group row">
-              <label for="nameProfile" class="col-sm-5 col-form-label">Votre nom actuel</label>
-              <input type="text" readonly class="form-control-plaintext col-sm-5" id="nameProfile" value={{this.user.name}}>
-            </div>
-            <div class="form-group row">
-              <label for="newNameProfile" class="col-sm-5 col-form-label">Entrer votre nouveau nom</label>
-              <input type="text" name="name" required="required" class="form-control col-sm-5" id="newNameProfile" [(ngModel)]="name">
-              <p id="wrongNameProfile" class="wrong col-sm-11">Le nom rentré ne correspond pas à un vrai nom !</p>
-            </div>
-            <button type="submit" class="btn btn-success mb-2">Changer de nom</button>
-          </form>
-        </div>
-
-        <div class="card">
-          <form class="card-body" ngNativeValidate (ngSubmit)="updateFirstName()">
-            <h6 class="card-title">Modifier votre prénom</h6>
-            <div class="form-group row">
-              <label for="firstNameProfile" class="col-sm-5 col-form-label">Votre prénom actuel</label>
-              <input type="text" readonly class="form-control-plaintext col-sm-5" id="firstNameProfile" value={{this.user.firstName}}>
-            </div>
-            <div class="form-group row">
-              <label for="newfirstNameProfile" class="col-sm-5 col-form-label">Entrer votre nouveau prénom</label>
-              <input type="text" required="required" name="firstName" class="form-control col-sm-5" id="newfirstNameProfile" [(ngModel)]="firstName">
-              <p id="wrongFirstNameProfile" class="wrong col-sm-11">Le prénom rentré ne correspond pas à un vrai nom !</p>
-            </div>
-            <button type="submit" class="btn btn-success mb-2">Changer de pénom</button>
-          </form>
-        </div>
-
-
       <div class="card">
+        <form class="card-body" ngNativeValidate (ngSubmit)="updateName()">
+          <h5 class="card-title">Modifier vos autres informations</h5>
+          <h6 class="card-title">Modifier votre nom</h6>
+          <div class="form-group row">
+            <label for="nameProfile" class="col-sm-5 col-form-label">Votre nom actuel</label>
+            <input type="text" readonly class="form-control-plaintext col-sm-5" id="nameProfile" value={{this.user.name}}>
+          </div>
+          <div class="form-group row">
+            <label for="newNameProfile" class="col-sm-5 col-form-label">Entrer votre nouveau nom</label>
+            <input type="text" name="name" required="required" class="form-control col-sm-5" id="newNameProfile" [(ngModel)]="name">
+            <p id="wrongNameProfile" class="wrong col-sm-11">Le nom rentré ne correspond pas à un vrai nom !</p>
+          </div>
+          <button type="submit" class="btn btn-success mb-2">Changer de nom</button>
+        </form>
+
+        <hr>
+
+        <form class="card-body" ngNativeValidate (ngSubmit)="updateFirstName()">
+          <h6 class="card-title">Modifier votre prénom</h6>
+          <div class="form-group row">
+            <label for="firstNameProfile" class="col-sm-5 col-form-label">Votre prénom actuel</label>
+            <input type="text" readonly class="form-control-plaintext col-sm-5" id="firstNameProfile" value={{this.user.firstName}}>
+          </div>
+          <div class="form-group row">
+            <label for="newfirstNameProfile" class="col-sm-5 col-form-label">Entrer votre nouveau prénom</label>
+            <input type="text" required="required" name="firstName" class="form-control col-sm-5" id="newfirstNameProfile" [(ngModel)]="firstName">
+            <p id="wrongFirstNameProfile" class="wrong col-sm-11">Le prénom rentré ne correspond pas à un vrai nom !</p>
+          </div>
+          <button type="submit" class="btn btn-success mb-2">Changer de prénom</button>
+        </form>
+
+        <hr>
+
         <form class="card-body" ngNativeValidate (ngSubmit)="updateAddress()">
           <h6 class="card-title">Modifier votre adresse</h6>
           <div class="form-group row">
@@ -120,7 +117,6 @@
           <button type="submit" class="btn btn-success mb-2">Changer d'adresse</button>
         </form>
       </div>
-
     </div>
   </div>
 </div>

@@ -71,6 +71,12 @@ public class AdvertisementController {
     }
 
     @PostMapping
+    @RequestMapping("searchByTitleAndValidated")
+    public Collection<Advertisement> searchByTitleAndValidated(@RequestParam("title") String title) {
+        return adManager.getAdvertisementsByTitleAndValidated(title);
+    }
+
+    @PostMapping
     @RequestMapping("searchByUuid")
     public Advertisement searchByUuid(@RequestParam("uuid") String uuid) {
         return adManager.getAdvertisementsByUuid(uuid);

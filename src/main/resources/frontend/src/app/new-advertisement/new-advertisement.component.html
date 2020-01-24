@@ -1,30 +1,32 @@
-<div class="form-group row justify-content-center">
-  <div class="col-md-6">
-    <div class="card">
-      <form class="card-body" ngNativeValidate (ngSubmit)="createAdvertisement()" enctype="multipart/form-data">
-        <h5 class="card-title">Ajouter une annonce</h5>
-        <div class="form-group row">
-          <label for="title" class="col-sm-5 col-form-label">Titre de l'annonce</label>
-          <input type="text" name="title" required="required" class="form-control col-sm-5" id="title"  [(ngModel)]="title">
-        </div>
-        <div class="form-group row">
-          <label for="address" class="col-sm-5 col-form-label">Adresse</label>
-          <input type="text" name="address" required="required" class="form-control col-sm-5" id="address"  [(ngModel)]="address">
-        </div>
-        <div class="form-group row">
-          <label for="description" class="col-sm-5 col-form-label">Description</label>
-          <textarea name="description" required="required" class="form-control col-sm-5" id="description"  [(ngModel)]="description"></textarea>
-        </div>
-        <div class="form-group row">
-          <label for="price" class="col-sm-5 col-form-label">Prix</label>
-          <input type="number" step="any" min="0" name="price" required="required" class="form-control col-sm-5" id="price" [(ngModel)]="price">
-        </div>
-        <div class="form-group row">
-          <label for="picture" class="col-sm-5 col-form-label">Images</label>
-          <input id="picture" type="file" #imgFileInput (change)="processFile($event)"/>
-        </div>
-        <button type="submit" class="btn btn-success mb-2">Poster l'annonce</button>
-      </form>
+<div class="container">
+  <div class="form-group row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <form class="card-body" ngNativeValidate (ngSubmit)="createAdvertisement()" enctype="multipart/form-data">
+          <h5 class="card-title">Ajouter une annonce</h5>
+          <div class="form-group row">
+            <label for="title" class="col-sm-5 col-form-label">Titre de l'annonce</label>
+            <input type="text" name="title" required="required" class="form-control col-sm-5" id="title"  [(ngModel)]="title">
+          </div>
+          <div class="form-group row">
+            <label for="address" class="col-sm-5 col-form-label">Adresse</label>
+            <input type="text" name="address" required="required" class="form-control col-sm-5" id="address"  [(ngModel)]="address">
+          </div>
+          <div class="form-group row">
+            <label for="description" class="col-sm-5 col-form-label">Description</label>
+            <textarea name="description" required="required" class="form-control col-sm-5" id="description"  [(ngModel)]="description"></textarea>
+          </div>
+          <div class="form-group row">
+            <label for="price" class="col-sm-5 col-form-label">Prix</label>
+            <input type="number" step="any" min="0" name="price" required="required" class="form-control col-sm-5" id="price" [(ngModel)]="price">
+          </div>
+          <div class="form-group row">
+            <label for="picture" class="col-sm-5 col-form-label">Images</label>
+            <input id="picture" type="file" #imgFileInput (change)="processFile($event)"/>
+          </div>
+          <button type="submit" class="btn btn-success mb-2">Poster le prêt</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
