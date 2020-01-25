@@ -1,3 +1,5 @@
+import {User} from "./model.user";
+
 export class Advertisement {
   id;
   title = '';
@@ -5,5 +7,7 @@ export class Advertisement {
   description = '';
   price = '';
   uuid = '';
+  user_id = '';
   validated: boolean;
+  user : User;
 }

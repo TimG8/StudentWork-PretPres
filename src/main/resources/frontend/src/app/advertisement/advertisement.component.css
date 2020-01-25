@@ -10,3 +10,22 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+#contactAnnouncer{
+  position: absolute;
+  right: 0;
+  width: 20em;
+}
+
+@media only screen
+and (max-width: 1135px){
+
+  .card{
+    width: 100%;
+  }
+
+  #contactAnnouncer{
+    position: relative;
+    width: 100%;
+  }
+}

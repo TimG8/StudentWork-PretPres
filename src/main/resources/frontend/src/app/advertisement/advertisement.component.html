@@ -19,16 +19,30 @@
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="sr-only">Next</span>
     </a>
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">{{this.ad.title}}</h4>
+        <h6 class="card-subtitle mb-2 text-muted">Coût : {{this.ad.price}}€</h6>
+        <h6 class="card-subtitle mb-2 text-muted">Localisation : {{this.ad.address}}</h6>
+        <hr>
+        <h6 class="card-text mb-2">Description :</h6>
+        <p class="card-text">{{this.ad.description}}</p>
+      </div>
+    </div>
+
   </div>
 
-  <div class="card">
+
+  <div id="contactAnnouncer" class="card" *ngIf="announcer!=null">
     <div class="card-body">
-      <h4 class="card-title">{{this.ad.title}}</h4>
-      <h6 class="card-subtitle mb-2 text-muted">Coût : {{this.ad.price}}€</h6>
-      <h6 class="card-subtitle mb-2 text-muted">Localisation : {{this.ad.address}}</h6>
-      <hr>
-      <h6 class="card-text mb-2">Description :</h6>
-      <p class="card-text">{{this.ad.description}}</p>
+      <h5 class="card-title">Contacts de l'annonceur</h5>
+      <p class="card-text">{{this.announcer.firstName}} {{this.announcer.name}}</p>
+      <p class="card-text">Mail : {{this.announcer.mail}}</p>
+      <p *ngIf="this.announcer.phoneNumber != null" class="card-text">Numéro de téléphone : {{this.announcer.phoneNumber}}</p>
     </div>
   </div>
+
 </div>
+
+
+

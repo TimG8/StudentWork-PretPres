@@ -4,6 +4,8 @@ import { User } from '../model/model.user';
 import { Advertisement } from '../model/model.advertisement';
 import { AdvertisementService } from '../service/advertisement.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import {UsersService} from "../service/users.service";
+import {error} from "util";
 
 @Component({
   selector: 'app-advertisement',
@@ -13,11 +15,13 @@ import { HttpErrorResponse } from '@angular/common/http';
 
 export class AdvertisementComponent implements OnInit {
   user: User;
+  announcer : User;
   ad: Advertisement;
 
   constructor(
     private route: ActivatedRoute,
     private adService: AdvertisementService,
+    private userService: UsersService,
     private router: Router) {
     this.user = new User();
     this.ad = new Advertisement();
@@ -38,6 +42,8 @@ export class AdvertisementComponent implements OnInit {
       if (!this.ad.validated && !this.user.isAdmin()) {
         this.router.navigate(['all-advertisements']);
       }
+      this.announcer = this.ad.user;
+
     }, (error: HttpErrorResponse) => {
       console.log(error);
     });
