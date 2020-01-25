@@ -1,3 +1,5 @@
+import { Picture } from './model.picture';
+
 export class Advertisement {
   id;
   title = '';
@@ -6,4 +8,6 @@ export class Advertisement {
   price = '';
   uuid = '';
   validated: boolean;
+  pic: Picture;
+  picture;
 }

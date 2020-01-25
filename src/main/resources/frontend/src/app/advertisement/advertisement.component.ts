@@ -33,6 +33,9 @@ export class AdvertisementComponent implements OnInit {
 
   getAdvertisement(uuid) {
     this.adService.findByUuid(uuid).subscribe((ad: Advertisement) => {
+      if(ad.pic != null){
+        ad.picture = 'data:image/jpeg;base64,' + ad.pic.image;
+      }
       this.ad = ad;
 
       if (!this.ad.validated && !this.user.isAdmin()) {

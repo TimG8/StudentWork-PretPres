@@ -26,6 +26,11 @@ export class MyAdvertisementComponent implements OnInit {
     this.user.getSessionItems();
 
     this.advertisementService.findByUserId(this.user).subscribe(data => {
+      for( var ad in data ){
+        if( data [ad].pic != null){
+          data[ad].picture = 'data:image/jpeg;base64,' + data[ad].pic.image;
+        }
+      }
       this.ads = data;
     });
   }

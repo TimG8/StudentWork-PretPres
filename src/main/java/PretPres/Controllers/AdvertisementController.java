@@ -36,8 +36,8 @@ public class AdvertisementController {
                                 @RequestParam("description") String description,
                                 @RequestParam("price") float price,
                                 @RequestParam("user_id") long user_id,
-                                @RequestPart(required=false) MultipartFile pic) {
-        return adManager.add(title, address, description, price, user_id, pic);
+                                @RequestPart(required=false) MultipartFile picture) {
+        return adManager.add(title, address, description, price, user_id, picture);
     }
 
     @PutMapping
