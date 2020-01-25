@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Category} from "../model/model.category";
-import {HttpErrorResponse} from "@angular/common/http";
-import {CategoryService} from "../service/category.service";
-import {User} from "../model/model.user";
+import {Category} from '../model/model.category';
+import {HttpErrorResponse} from '@angular/common/http';
+import {CategoryService} from '../service/category.service';
+import {User} from '../model/model.user';
 
 @Component({
   selector: 'app-category',
@@ -11,7 +11,7 @@ import {User} from "../model/model.user";
 })
 export class CategoryComponent implements OnInit {
   categories: Category[];
-  categoryName: "";
+  categoryName = 'Sans catégorie';
 
   constructor(
     private catService: CategoryService
@@ -35,23 +35,23 @@ export class CategoryComponent implements OnInit {
     });
   }
 
-  checkCategory(){
-    for (let cat of this.categories){
-      if(cat.name == this.categoryName){
-        alert("Une catégorie avec le même nom existe déjà !");
+  checkCategory() {
+    for (const cat of this.categories) {
+      if (cat.name === this.categoryName) {
+        alert('Une catégorie avec le même nom existe déjà !');
         return;
       }
     }
+
     this.validate(this.categoryName);
   }
 
   validate(name) {
-    this.catService.addCategory(name).subscribe((cat:Category) => {
+    this.catService.addCategory(name).subscribe((cat: Category) => {
       this.categories.push(cat);
-      this.categoryName = "";
+      this.categoryName = 'Sans catégorie';
     }, (error: HttpErrorResponse) => {
       console.log(error);
     });
   }
-
 }

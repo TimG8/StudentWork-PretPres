@@ -20,9 +20,10 @@ public class CategoryManagement implements ICategoryManagement {
 
     @Override
     public Category addCategory(String name) {
-        if(repository.findByName(name) != null){
+        if (repository.findByName(name) != null) {
             return null;
         }
+
         Category cat = new Category();
         cat.setName(name);
         return repository.save(cat);

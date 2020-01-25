@@ -1,6 +1,5 @@
-import {User} from "./model.user";
-import {Category} from "./model.category";
-
+import { User } from './model.user';
+import { Category } from './model.category';
 import { Picture } from './model.picture';
 
 export class Advertisement {
@@ -12,8 +11,8 @@ export class Advertisement {
   uuid = '';
   user_id = '';
   validated: boolean;
+  user: User;
   pic: Picture;
   picture;
-  user : User;
   category: Category;
 }

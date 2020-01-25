@@ -14,6 +14,9 @@
             <div class="card-text">{{ad.price}}€</div>
             <div class="card-text">{{ad.address}}</div>
           </div>
+          <div class="card-block cat">
+            <div class="card-text">{{ad.category.name}}</div>
+          </div>
           <div class="card-block col-md-auto mleft">
             <div *ngIf="!ad.validated && this.user.isAdmin()"><button type="button" class="btn btn-success" (click)=validate(ad.uuid)>Valider</button></div>
             <div *ngIf="ad.validated && this.user.isAdmin()"><button type="button" class="btn btn-warning" (click)="unvalidate(ad.uuid)">Invalider</button></div>

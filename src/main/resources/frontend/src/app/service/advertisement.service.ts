@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 
 import { Advertisement } from '../model/model.advertisement';
 import { User } from '../model/model.user';
+import { Category } from '../model/model.category';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,7 @@ export class AdvertisementService {
     return this.http.post<Advertisement[]>(request, params);
   }
 
-  public createAdvertisement(title: string, address: string, description: string, price: string, user: User, file: File): Observable<Advertisement> {
+  public createAdvertisement(title: string, address: string, description: string, price: string, user: User, file: File, category: Category): Observable<Advertisement> {
     const request = this.baseUrl + '/create';
 
     const formData = new FormData();
@@ -38,6 +39,7 @@ export class AdvertisementService {
     formData.append('address', address);
     formData.append('user_id', user.id);
     formData.append('picture', file);
+    formData.append('category_id', category.id);
 
     return this.http.post<Advertisement>(request, formData);
   }

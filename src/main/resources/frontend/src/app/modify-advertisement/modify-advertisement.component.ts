@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+
 import { User } from '../model/model.user';
 import { Advertisement } from '../model/model.advertisement';
 import { AdvertisementService } from '../service/advertisement.service';
-import { HttpErrorResponse } from '@angular/common/http';
+import { Category } from '../model/model.category';
+import { CategoryService } from '../service/category.service';
 
 @Component({
   selector: 'app-modify-advertisement',
@@ -20,10 +23,14 @@ export class ModifyAdvertisementComponent implements OnInit {
   description: '';
   price: '';
   picture: File;
+  category: Category;
+
+  categories: Category[];
 
   constructor(
     private route: ActivatedRoute,
     private service: AdvertisementService,
+    private catService: CategoryService,
     private router: Router) {
     this.user = new User();
     this.ad = new Advertisement();
@@ -35,15 +42,18 @@ export class ModifyAdvertisementComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.getAdvertisement(this.route.snapshot.params.id);
     });
+
+    this.categories = [];
+    this.catService.getCategories().subscribe((cat: Category[]) => {
+      this.categories = cat;
+    }, (error: HttpErrorResponse) => {
+      console.log(error);
+    });
   }
 
   getAdvertisement(uuid) {
     this.service.findByUuid(uuid).subscribe((ad: Advertisement) => {
       this.ad = ad;
-
-      if (!this.ad.validated && !this.user.isAdmin()) {
-        this.router.navigate(['all-advertisements']);
-      }
     }, (error: HttpErrorResponse) => {
       console.log(error);
     });
@@ -65,6 +75,8 @@ export class ModifyAdvertisementComponent implements OnInit {
     if (this.price != null) {
       this.ad.price = this.price;
     }
+
+    this.ad.category = this.category;
 
     this.service.updateAdvertisement(this.ad).subscribe(() => {
       }, (error: HttpErrorResponse) => {
