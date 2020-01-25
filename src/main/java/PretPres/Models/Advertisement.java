@@ -21,6 +21,9 @@ public class Advertisement {
     private boolean validated;
     private String uuid;
 
+    @ManyToOne
+    private Categorie categorie;
+
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -111,5 +114,13 @@ public class Advertisement {
 
     public void setPic(Picture pic) {
         this.picture = pic;
+    }
+
+    public Categorie getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(Categorie categorie) {
+        this.categorie = categorie;
     }
 }
