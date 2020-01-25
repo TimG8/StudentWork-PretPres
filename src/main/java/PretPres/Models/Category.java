@@ -6,13 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Categorie {
+public class Category {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
     private String name;
 
-    public Categorie(){}
+    public Category(){}
 
     public long getId() {
         return id;
