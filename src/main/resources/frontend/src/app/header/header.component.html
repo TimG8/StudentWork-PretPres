@@ -9,8 +9,13 @@
         <a class="nav-link" routerLink="/all-advertisements">Annonces</a>
       </li>
       <li class="nav-item" *ngIf="this.isAdmin()">
-        <span *ngIf="isAdmin()">
+        <span>
           <a class="nav-link" routerLink="/users">Utilisateurs</a>
+        </span>
+      </li>
+      <li class="nav-item" *ngIf="this.isAdmin()">
+        <span>
+          <a class="nav-link" routerLink="/categories">Catégories</a>
         </span>
       </li>
       <li class="nav-item" *ngIf="!this.isHome()">

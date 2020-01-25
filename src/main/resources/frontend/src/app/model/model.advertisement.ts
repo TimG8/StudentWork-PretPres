@@ -1,4 +1,5 @@
 import {User} from "./model.user";
+import {Category} from "./model.category";
 
 export class Advertisement {
   id;
@@ -10,4 +11,5 @@ export class Advertisement {
   user_id = '';
   validated: boolean;
   user : User;
+  category: Category;
 }

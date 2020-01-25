@@ -1,11 +1,8 @@
 package PretPres.Models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.hibernate.annotations.OnDelete;
-import org.springframework.web.bind.annotation.DeleteMapping;
 
 import javax.persistence.*;
-import java.sql.Blob;
 import java.util.UUID;
 
 @Entity
@@ -22,7 +19,7 @@ public class Advertisement {
     private String uuid;
 
     @ManyToOne
-    private Categorie categorie;
+    private Category category;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -116,11 +113,11 @@ public class Advertisement {
         this.picture = pic;
     }
 
-    public Categorie getCategorie() {
-        return categorie;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategorie(Categorie categorie) {
-        this.categorie = categorie;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }
