@@ -28,6 +28,6 @@ h2 {
 }
 
 .image-display{
-  height: 20rem;
-  width: 20rem;
+  height: 10rem;
+  width: auto;
 }

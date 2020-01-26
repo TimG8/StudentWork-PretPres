@@ -14,17 +14,24 @@
             <input type="email" name="mail" class="form-control" id="mailRegister" maxlength="100" required="required" placeholder="exemple@mail.com" [(ngModel)]="mail" />
           </li>
           <li>
-            <p id="wrongMail" class="wrong">L'adresse mail rentrée est invalide !</p>
+            <p id="wrongMail" class="wrong">L'adresse mail saisie est invalide !</p>
           </li>
           <li>
             <label for="password" class="col-form-label-lg">Mot de passe</label>
           </li>
           <li>
-            <input type="password" name="passwod" class="form-control" id="password" maxlength="20" placeholder="motdepasse" required="required" [(ngModel)]="password"/>
+            <input type="password" name="passwod" class="form-control" id="password" maxlength="20" placeholder="Mot de passe" required="required" [(ngModel)]="password"/>
           </li>
           <li>
-            <p id="wrongPasswordMatchRegister" class="wrong">Le mot de passe doit contenir 1 majuscule, 1 minucule, une caractère numérique,
-              un caractère spécial (!, @, $, &, *) et avoir une longueur minimale de 6 ! </p>
+            <div id="wrongPasswordMatchRegister" class="wrong">Le mot de passe doit contenir au moins :
+              <ul>
+                <li>une majuscule (A-Z)</li>
+                <li>une minuscule (a-z)</li>
+                <li>un chiffre (0-9)</li>
+                <li>un caractère spécial (!, @, $, &, *)</li>
+                <li>faire minimum 6 caractères de long</li>
+              </ul>
+            </div>
           </li>
           <li>
             <label for="passwordConfirm" class="col-form-label-lg">Confirmer le mot de passe</label>
