@@ -11,7 +11,7 @@ import {User} from '../model/model.user';
 })
 export class CategoryComponent implements OnInit {
   categories: Category[];
-  categoryName = 'Sans catégorie';
+  categoryName = '';
 
   constructor(
     private catService: CategoryService
