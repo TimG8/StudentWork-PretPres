@@ -3,6 +3,7 @@
   <table class="table table-bordered table-striped">
     <thead class="thead-dark">
       <tr>
+        <th scope="col">Catégorie</th>
         <th scope="col">Titre</th>
         <th scope="col"> Image</th>
         <th scope="col">Description</th>
@@ -14,8 +15,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let ad of ads">
+        <td>{{ ad.category.name }}</td>
         <td>{{ ad.title }}</td>
-        <td> <img class="d-block w-100" *ngIf="ad.picture"  src="{{ad.picture}}" alt="picture"> </td>
+        <td><img class="d-block w-50" *ngIf="ad.picture" src="{{ad.picture}}" alt="picture"></td>
         <td class="text-truncate">{{ad.description | slice:0:20}}{{ ad.description.length > 20 ? '...' : ''}}</td>
         <td>{{ ad.address }}</td>
         <td>{{ ad.price }}</td>

@@ -1,9 +1,11 @@
 package PretPres.DataManagementServices;
 
 import PretPres.Models.Advertisement;
+import PretPres.Models.Category;
 import PretPres.Models.Picture;
 import PretPres.Models.User;
 import PretPres.Repositories.AdvertisementRepository;
+import PretPres.Repositories.CategoryRepository;
 import PretPres.Repositories.PictureRepository;
 import PretPres.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class AdvertisementManagement implements IAdvertisementManagement {
 
     @Autowired
     PictureRepository pictureRepo;
+
+    @Autowired
+    CategoryRepository catRepo;
 
     public AdvertisementManagement() {}
 
@@ -64,17 +69,24 @@ public class AdvertisementManagement implements IAdvertisementManagement {
     }
 
     @Override
-    public Advertisement add(String title, String address, String description, float price, long user_id, MultipartFile pic) {
+    public Advertisement add(String title, String address, String description, float price, long user_id, MultipartFile pic, long category_id) {
         Optional<User> user = userRepo.findById(user_id);
 
         if (user.isEmpty()) {
             return null;
         }
 
+        Optional<Category> category = catRepo.findById(category_id);
+
+        if (category.isEmpty()) {
+            return null;
+        }
+
         Advertisement ad = new Advertisement(title, address, description, price);
         ad.setUser(user.get());
+        ad.setCategory(category.get());
 
-        if(pic != null) {
+        if (pic != null) {
             Picture image;
             try {
                 image = new Picture(ad.getUuid(), pic);
@@ -85,6 +97,7 @@ public class AdvertisementManagement implements IAdvertisementManagement {
                 return null;
             }
         }
+
         return adRepo.save(ad);
     }
 
@@ -106,18 +119,20 @@ public class AdvertisementManagement implements IAdvertisementManagement {
         ad.setDescription(advertisement.getDescription());
         ad.setPrice(advertisement.getPrice());
         ad.setUuid(advertisement.getUuid());
+        ad.setCategory(advertisement.getCategory());
         ad.setValidated(false);
 
         return adRepo.save(ad);
     }
 
     @Override
-    public Advertisement getAdvertisementsByUuid(String uudi) {
-        Advertisement ad = adRepo.findByUuid(uudi);
+    public Advertisement getAdvertisementsByUuid(String uuid) {
+        Advertisement ad = adRepo.findByUuid(uuid);
 
         if (ad == null) {
             return null;
         }
+
         return ad;
     }
 

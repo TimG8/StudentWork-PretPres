@@ -22,7 +22,12 @@ h2 {
   margin-right: 2rem;
 }
 
+.cat {
+  color: grey;
+  margin: auto auto;
+}
+
 .image-display{
-  height: 20rem;
-  width: 20rem;
+  height: 10rem;
+  width: auto;
 }

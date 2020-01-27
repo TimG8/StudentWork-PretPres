@@ -41,10 +41,14 @@ export class SearchAdvertisementComponent implements OnInit, OnDestroy {
     this.user.getSessionItems();
 
     if (this.user.isAdmin()) {
-      this.adService.searchByTitle()
-        .subscribe(data => {
-          this.ads = data;
-        });
+      this.adService.searchByTitle().subscribe((ads: Advertisement[]) => {
+        for( var ad in ads ){
+          if(ads[ad].pic != null){
+            ads[ad].picture = 'data:image/jpeg;base64,' + ads[ad].pic.image;
+          }
+        }
+        this.ads = ads;
+       });
     } else {
       this.adService.searchByTitleAndValidated()
         .subscribe(data => {

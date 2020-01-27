@@ -12,7 +12,7 @@ import { AllAdvertisementsComponent } from './all-advertisements/all-advertiseme
 import { AdvertisementComponent } from './advertisement/advertisement.component';
 import { SearchAdvertisementComponent } from './search-advertisement/search-advertisement.component';
 import { ModifyAdvertisementComponent } from './modify-advertisement/modify-advertisement.component';
-import {CategoryComponent} from "./category/category.component";
+import {CategoryComponent} from './category/category.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },

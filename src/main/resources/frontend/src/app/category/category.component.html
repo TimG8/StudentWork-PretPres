@@ -5,7 +5,7 @@
   <form class="form-inline" (submit)="checkCategory()" ngNativeValidate>
     <div class="form-group mx-sm-3 mb-2">
       <label for="newCategory" class="sr-only">Password</label>
-      <input type="text" name="catName" class="form-control" id="newCategory" placeholder="Nom catégorie" [(ngModel)]="categoryName">
+      <input type="text" name="catName" class="form-control" id="newCategory" required="required" placeholder="Nom catégorie" [(ngModel)]="categoryName">
     </div>
     <button type="submit" class="btn btn-primary mb-2">Ajouter</button>
   </form>

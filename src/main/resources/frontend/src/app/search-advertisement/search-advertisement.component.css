@@ -21,3 +21,8 @@ h2 {
 .mright {
   margin-right: 2rem;
 }
+
+.image-display{
+  height: 10rem;
+  width: auto;
+}

@@ -1,8 +1,10 @@
 package PretPres.Controllers;
 
 import PretPres.DataManagementServices.IAdvertisementManagement;
+import PretPres.DataManagementServices.ICategoryManagement;
 import PretPres.DataManagementServices.IUserManagement;
 import PretPres.Models.Advertisement;
+import PretPres.Models.Category;
 import PretPres.Models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -23,6 +25,8 @@ public class AdvertisementController {
     @Autowired
     IUserManagement userManager;
 
+    @Autowired
+    ICategoryManagement catManager;
 
     @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
     public Iterable<Advertisement> index(Model model) {
@@ -36,8 +40,9 @@ public class AdvertisementController {
                                 @RequestParam("description") String description,
                                 @RequestParam("price") float price,
                                 @RequestParam("user_id") long user_id,
-                                @RequestPart(required=false) MultipartFile picture) {
-        return adManager.add(title, address, description, price, user_id, picture);
+                                @RequestPart(required=false) MultipartFile picture,
+                                @RequestParam("category_id") long category_id) {
+        return adManager.add(title, address, description, price, user_id, picture, category_id);
     }
 
     @PutMapping
@@ -114,24 +119,31 @@ public class AdvertisementController {
         deleteAdvertisement("FEED-3");
 
         User user = userManager.getAllUsers().iterator().next();
-        Advertisement ad = new Advertisement("Potion d'intelligence", "Château de Kaamelott", "Je vends cette potion car elle rend stupide au lieu de rendre intelligent", 458);
 
+        catManager.addCategory("FEED");
+        Category category = catManager.getAllCategories().iterator().next();
+
+        Advertisement ad = new Advertisement("Potion d'intelligence", "Château de Kaamelott", "Je vends cette potion car elle rend stupide au lieu de rendre intelligent", 458);
         ad.setUser(user);
+        ad.setCategory(category);
         ad.setUuid("FEED-0");
         adManager.addFull(ad);
 
-        ad = new Advertisement("Tuyau d'arrosage", "Olli, Échangeur, Tarkov", "Utile pour faire un récupérateur d'eau", 20000);
+        ad = new Advertisement("Tuyau d'arrosage", "Oli, Échangeur, Tarkov", "Utile pour faire un récupérateur d'eau", 20000);
         ad.setUser(user);
+        ad.setCategory(category);
         ad.setUuid("FEED-1");
         adManager.addFull(ad);
 
         ad = new Advertisement("Fromage pourri", "14 rue du Moisi", "Pour éloigner vos voisins encombrants", 12);
         ad.setUser(user);
+        ad.setCategory(category);
         ad.setUuid("FEED-2");
         adManager.addFull(ad);
 
         ad = new Advertisement("Toblerone", "Suisse", "Une drogue efficace et plaisante", 10);
         ad.setUser(user);
+        ad.setCategory(category);
         ad.setUuid("FEED-3");
         adManager.addFull(ad);
 
