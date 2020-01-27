@@ -17,6 +17,7 @@ public class Picture {
 
     public Picture (){
     }
+
     public Picture(String id, MultipartFile pic) throws IOException {
         this.id = id;
         this.image = pic.getBytes();
