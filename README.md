@@ -7,10 +7,14 @@ This application was developed by Timothée GUY, Romain BOISSON and Reynald BARB
 
 - IntelliJ IDEA 2019.3.1
 
+- Wamp Server 3.1.7 with phpMyAdmin 4.8.4 and MySQL 5.7.24
+
 - Spring 2.2.1
 - Java JDK 11.0.4
 - Angular 8.2.14
 - Node.js 13.2.0
+
+You can import a default database by importing the `default_db.sql` file in phpMyAdmin
 
 # How-to run the Spring backend server
 
