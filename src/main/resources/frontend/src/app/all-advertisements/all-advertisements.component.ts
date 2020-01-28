@@ -36,11 +36,12 @@ export class AllAdvertisementsComponent implements OnInit {
 
   getAllAds() {
     this.adService.getAllAds().subscribe((ads: Advertisement[]) => {
-      for( var ad in ads ){
-        if(ads[ad].pic != null){
+      for (var ad in ads) {
+        if (ads[ad].pic != null){
           ads[ad].picture = 'data:image/jpeg;base64,' + ads[ad].pic.image;
         }
       }
+
       this.ads = ads;
     }, (error: HttpErrorResponse) => {
       console.log(error);
@@ -49,6 +50,12 @@ export class AllAdvertisementsComponent implements OnInit {
 
   getValidatedAds() {
     this.adService.getValidatedAds().subscribe((ads: Advertisement[]) => {
+      for (var ad in ads) {
+        if (ads[ad].pic != null){
+          ads[ad].picture = 'data:image/jpeg;base64,' + ads[ad].pic.image;
+        }
+      }
+
       this.ads = ads;
     }, (error: HttpErrorResponse) => {
       console.log(error);
